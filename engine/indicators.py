@@ -149,38 +149,63 @@ def compute_indicator_frame(df: pd.DataFrame) -> pd.DataFrame:
     return out
 
 
+def bar_conditions(row: pd.Series, direction: str) -> list[str]:
+    """한 봉에서 direction(bullish/bearish)에 해당하는, 충족된 조건 이름 목록.
+
+    매수/매도 판단에 쓰이는 3가지 조건(스토캐 크로스/failure swing/RSI 크로스)이
+    일봉 필터와 15분봉 트리거 양쪽에서 동일해야 하므로 하나로 공유한다.
+    """
+    if direction == "bullish":
+        conditions = []
+        if row["stoch_cross"] == "golden":
+            conditions.append("stoch_golden_cross")
+        if row["bull_failure_swing"]:
+            conditions.append("stoch_bull_failure_swing")
+        if row["rsi_cross"] == "golden":
+            conditions.append("rsi_golden_cross")
+        return conditions
+
+    conditions = []
+    if row["stoch_cross"] == "death":
+        conditions.append("stoch_death_cross")
+    if row["bear_failure_swing"]:
+        conditions.append("stoch_bear_failure_swing")
+    if row["rsi_cross"] == "death":
+        conditions.append("rsi_death_cross")
+    return conditions
+
+
 def latest_daily_regime(indicator_df: pd.DataFrame) -> dict | None:
-    """가장 최근 스토캐/RSI 크로스 방향으로 일봉 필터(bullish/bearish) 산출."""
-    crosses = indicator_df[["stoch_cross", "rsi_cross"]].copy()
-    combined = crosses["stoch_cross"].combine_first(crosses["rsi_cross"])
-    non_null = combined.dropna()
-    if non_null.empty:
+    """
+    가장 최근에 매수 조건(스토캐/RSI 골든크로스 또는 failure swing) 또는
+    매도 조건(데드크로스 또는 failure swing) 중 하나라도 충족된 날의 방향을
+    일봉 필터로 산출. 같은 날 양쪽이 동시에 충족되는 드문 경우는 bullish 우선.
+    """
+    bull_mask = (
+        (indicator_df["stoch_cross"] == "golden")
+        | indicator_df["bull_failure_swing"]
+        | (indicator_df["rsi_cross"] == "golden")
+    )
+    bear_mask = (
+        (indicator_df["stoch_cross"] == "death")
+        | indicator_df["bear_failure_swing"]
+        | (indicator_df["rsi_cross"] == "death")
+    )
+    any_mask = bull_mask | bear_mask
+    if not any_mask.any():
         return None
-    last_idx = non_null.index[-1]
-    direction = "bullish" if non_null.iloc[-1] == "golden" else "bearish"
-    return {"direction": direction, "cross_date": str(last_idx.date())}
+
+    last_idx = indicator_df.index[any_mask][-1]
+    direction = "bullish" if bull_mask.loc[last_idx] else "bearish"
+    conditions = bar_conditions(indicator_df.loc[last_idx], direction)
+    return {"direction": direction, "cross_date": str(last_idx.date()), "conditions": conditions}
 
 
 def latest_intraday_triggers(indicator_df: pd.DataFrame, direction: str) -> list[dict]:
     """마지막 봉에서 direction(bullish/bearish)에 맞는 조건이 새로 충족됐는지 확인."""
     last = indicator_df.iloc[-1]
     bar_ts = indicator_df.index[-1]
-    triggers = []
-
-    if direction == "bullish":
-        if last["stoch_cross"] == "golden":
-            triggers.append({"condition": "stoch_golden_cross"})
-        if last["bull_failure_swing"]:
-            triggers.append({"condition": "stoch_bull_failure_swing"})
-        if last["rsi_cross"] == "golden":
-            triggers.append({"condition": "rsi_golden_cross"})
-    else:
-        if last["stoch_cross"] == "death":
-            triggers.append({"condition": "stoch_death_cross"})
-        if last["bear_failure_swing"]:
-            triggers.append({"condition": "stoch_bear_failure_swing"})
-        if last["rsi_cross"] == "death":
-            triggers.append({"condition": "rsi_death_cross"})
+    triggers = [{"condition": c} for c in bar_conditions(last, direction)]
 
     for t in triggers:
         t["bar_timestamp"] = str(bar_ts)
