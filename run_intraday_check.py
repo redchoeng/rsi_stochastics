@@ -37,6 +37,7 @@ def load_settings() -> dict:
 
 
 def is_market_open(market_hours: dict) -> bool:
+    """프리마켓(open)~애프터마켓(close) 전체 세션 기준 (settings.yaml 참고)."""
     tz = ZoneInfo(market_hours["timezone"])
     now = dt.datetime.now(tz)
     if now.weekday() >= 5:  # 토/일
@@ -44,6 +45,19 @@ def is_market_open(market_hours: dict) -> bool:
     open_t = dt.datetime.strptime(market_hours["open"], "%H:%M").time()
     close_t = dt.datetime.strptime(market_hours["close"], "%H:%M").time()
     return open_t <= now.time() <= close_t
+
+
+def classify_session(bar_timestamp: str, market_hours: dict) -> str:
+    """봉 시각이 프리마켓/정규장/애프터마켓 중 어디인지 (알림에서 노이즈 가능성 판단용)."""
+    ts = dt.datetime.fromisoformat(bar_timestamp)
+    regular_open = dt.datetime.strptime(market_hours["regular_open"], "%H:%M").time()
+    regular_close = dt.datetime.strptime(market_hours["regular_close"], "%H:%M").time()
+    t = ts.timetz().replace(tzinfo=None)
+    if t < regular_open:
+        return "premarket"
+    if t >= regular_close:
+        return "afterhours"
+    return "regular"
 
 
 def main() -> int:
@@ -83,7 +97,8 @@ def main() -> int:
         for trigger in triggers:
             if state_store.already_alerted(state, ticker, trigger["condition"], trigger["bar_timestamp"]):
                 continue
-            logger.info("%s %s 트리거 발생: %s", ticker, direction, trigger["condition"])
+            trigger["session"] = classify_session(trigger["bar_timestamp"], settings["market_hours"])
+            logger.info("%s %s 트리거 발생: %s (%s)", ticker, direction, trigger["condition"], trigger["session"])
             if not args.dry_run:
                 notifier.send_trigger_alert(ticker, direction, trigger)
             state_store.mark_alerted(state, ticker, trigger["condition"], trigger["bar_timestamp"])

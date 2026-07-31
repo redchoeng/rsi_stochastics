@@ -18,8 +18,11 @@ universe:
 
 market_hours:
   timezone: "America/New_York"
-  open: "09:30"
-  close: "16:00"
+  # 프리마켓(04:00)~애프터마켓(20:00) 전체 포함. 정규장은 09:30~16:00.
+  open: "04:00"
+  close: "20:00"
+  regular_open: "09:30"
+  regular_close: "16:00"
 
 daily_scan:
   history_period: "6mo"     # 일봉 워밍업(스토캐/RSI/failure swing lookback)에 충분한 기간

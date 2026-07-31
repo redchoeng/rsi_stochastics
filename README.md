@@ -6,10 +6,11 @@
 
 1. **유니버스** — S&P500 + Nasdaq100 후보군(~550~600개)에서 최근 5거래일 거래대금(Close×Volume) 상위 100개를 매주 월요일에 산출 (`config/universe.json`). 전체 미국 시장을 무료 인프라로 실시간 스크리닝하는 건 불가능해서 나온 근사치이며, 이 두 지수 밖의 급등 소형주는 잡히지 않는다.
 2. **일봉 필터** — 매일 미장 마감 직후 top100 종목의 일봉 스토캐스틱/RSI 크로스를 계산해 방향(bullish/bearish)을 확정 (`config/daily_signals.json`).
-3. **15분봉 트리거** — 장중 수분 간격으로 daily_signals에 방향이 있는 종목만 15분봉으로 재검사, 아래 조건 중 하나라도 새로 충족되면 텔레그램 알림:
+3. **15분봉 트리거** — 프리마켓~애프터마켓(04:00~20:00 ET) 내내 수분 간격으로 daily_signals에 방향이 있는 종목만 15분봉으로 재검사, 아래 조건 중 하나라도 새로 충족되면 텔레그램 알림:
    - 스토캐스틱 골든/데드크로스
    - 스토캐스틱 Bullish/Bearish Failure Swing
    - RSI(14) 골든/데드크로스 (RSI 자체의 14일 이동평균 대비)
+   - 프리마켓/애프터마켓 봉은 거래량이 얕아 신호가 노이즈성일 수 있어 알림에 세션(프리마켓/정규장/애프터마켓)을 표시함
 
 ## 로컬 설정
 
@@ -42,7 +43,7 @@ python run_intraday_check.py --ignore-market-hours --dry-run   # 장 시간 무�
    - 요청: `POST https://api.github.com/repos/<owner>/<repo>/actions/workflows/intraday-check.yml/dispatches`
    - 헤더: `Authorization: token <PAT>`, `Accept: application/vnd.github.v3+json`
    - 바디: `{"ref":"main"}`
-   - 실행 주기: 장중 수 분 간격 (스크립트가 `America/New_York` 기준 정규장 시간이 아니면 자동으로 즉시 종료하므로, 넉넉하게 KST 21:00~06:00 매일로 걸어둬도 무방)
+   - 실행 주기: 수 분 간격 (스크립트가 `America/New_York` 기준 04:00~20:00 ET 세션이 아니면 자동으로 즉시 종료하므로, DST 상관없이 넉넉하게 KST 17:00~10:00(다음날)로 걸어둬도 무방 — 04:00 ET는 서머타임이면 KST 17:00, 아니면 18:00; 20:00 ET는 서머타임이면 다음날 KST 09:00, 아니면 10:00)
 5. 초기 배포 직후에는 `daily-scan.yml`을 한 번 수동 실행(`workflow_dispatch`)해 `daily_signals.json`을 채워야 `intraday-check.yml`이 감지할 종목이 생긴다.
 
 ## 한계

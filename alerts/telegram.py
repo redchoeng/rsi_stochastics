@@ -40,8 +40,11 @@ class TelegramNotifier:
     def send_trigger_alert(self, ticker: str, direction: str, trigger: dict) -> bool:
         label = CONDITION_LABELS.get(trigger["condition"], trigger["condition"])
         emoji = "🟢" if direction == "bullish" else "🔴"
+        session = trigger.get("session", "regular")
+        session_label = {"premarket": "⚠️ 프리마켓", "afterhours": "⚠️ 애프터마켓", "regular": "정규장"}[session]
         text = (
             f"{emoji} <b>{ticker}</b> — {label}\n"
+            f"세션: {session_label}\n"
             f"가격: {trigger['price']:.2f}\n"
             f"Stoch %K/%D: {trigger['stoch_k']:.1f} / {trigger['stoch_d']:.1f}\n"
             f"RSI(14): {trigger['rsi']:.1f}\n"
