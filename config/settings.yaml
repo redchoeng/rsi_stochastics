@@ -26,6 +26,7 @@ market_hours:
 
 daily_scan:
   history_period: "6mo"     # 일봉 워밍업(스토캐/RSI/failure swing lookback)에 충분한 기간
+  min_conditions: 2         # 3개(스토캐 크로스/failure swing/RSI 크로스) 중 같은 날 몇 개 이상 겹쳐야 방향 확정할지
 
 intraday_check:
   history_period: "5d"      # yfinance 15m 데이터 제공 한계(최근 60일) 내에서 워밍업에 충분한 기간

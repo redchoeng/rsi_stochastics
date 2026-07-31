@@ -78,7 +78,7 @@ def main() -> int:
                 logger.warning("%s: 일봉 데이터 없음, 스킵", ticker)
                 continue
             indicator_df = compute_indicator_frame(df)
-            regime = latest_daily_regime(indicator_df)
+            regime = latest_daily_regime(indicator_df, min_conditions=settings["daily_scan"]["min_conditions"])
             if regime:
                 daily_signals[ticker] = regime
         except Exception:

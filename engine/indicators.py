@@ -188,22 +188,25 @@ def bar_conditions(row: pd.Series, direction: str) -> list[str]:
     return conditions
 
 
-def latest_daily_regime(indicator_df: pd.DataFrame) -> dict | None:
+def latest_daily_regime(indicator_df: pd.DataFrame, min_conditions: int = 2) -> dict | None:
     """
-    가장 최근에 매수 조건(스토캐/RSI 골든크로스 또는 failure swing) 또는
-    매도 조건(데드크로스 또는 failure swing) 중 하나라도 충족된 날의 방향을
-    일봉 필터로 산출. 같은 날 양쪽이 동시에 충족되는 드문 경우는 bullish 우선.
+    가장 최근에 3가지 조건(스토캐 크로스/failure swing/RSI 크로스) 중
+    min_conditions개 이상이 같은 날 동시에 충족된 날의 방향을 일봉 필터로 산출.
+    (1개만 맞아도 걸리던 이전 방식보다 확신도를 높이기 위해 2/3 이상으로 강화)
+    같은 날 양쪽이 동시에 min_conditions를 넘는 경우는 bullish 우선.
     """
-    bull_mask = (
-        (indicator_df["stoch_cross"] == "golden")
-        | indicator_df["bull_failure_swing"]
-        | (indicator_df["rsi_cross"] == "golden")
+    bull_count = (
+        (indicator_df["stoch_cross"] == "golden").astype(int)
+        + indicator_df["bull_failure_swing"].astype(int)
+        + (indicator_df["rsi_cross"] == "golden").astype(int)
     )
-    bear_mask = (
-        (indicator_df["stoch_cross"] == "death")
-        | indicator_df["bear_failure_swing"]
-        | (indicator_df["rsi_cross"] == "death")
+    bear_count = (
+        (indicator_df["stoch_cross"] == "death").astype(int)
+        + indicator_df["bear_failure_swing"].astype(int)
+        + (indicator_df["rsi_cross"] == "death").astype(int)
     )
+    bull_mask = bull_count >= min_conditions
+    bear_mask = bear_count >= min_conditions
     any_mask = bull_mask | bear_mask
     if not any_mask.any():
         return None
