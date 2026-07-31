@@ -57,11 +57,33 @@ def compute_rsi_with_ma(df: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame({"rsi": rsi, "rsi_ma": rsi_ma}, index=df.index)
 
 
-def detect_cross(fast: pd.Series, slow: pd.Series) -> pd.Series:
-    """fast가 slow를 상향 돌파하면 'golden', 하향 돌파하면 'death', 그 외 None."""
+def session_gap_mask(index: pd.DatetimeIndex, gap_factor: float = 5.0) -> pd.Series:
+    """
+    이전 봉과의 시간 간격이 정상 간격의 gap_factor배를 넘으면 True (세션 경계).
+    프리/애프터마켓까지 이어붙인 15분봉은 애프터마켓 마감~다음날 프리마켓 시작
+    사이에 몇 시간짜리 갭이 생기는데, 그 경계를 '바로 다음 봉'처럼 비교하면
+    갭 자체가 크로스로 잘못 잡힌다 (실제로 겪은 버그). 일봉은 주말 갭(~3배)
+    정도라 5배 기준이면 걸리지 않는다.
+    """
+    diffs = index.to_series().diff().dt.total_seconds()
+    median_gap = diffs.median()
+    if not median_gap or pd.isna(median_gap) or median_gap <= 0:
+        return pd.Series(False, index=index)
+    return (diffs > median_gap * gap_factor).fillna(False)
+
+
+def detect_cross(fast: pd.Series, slow: pd.Series, session_gap: pd.Series | None = None) -> pd.Series:
+    """fast가 slow를 상향 돌파하면 'golden', 하향 돌파하면 'death', 그 외 None.
+
+    session_gap이 True인 봉(세션 경계 바로 다음 봉)은 직전 봉과의 비교가
+    무의미하므로 크로스로 치지 않는다.
+    """
     prev_fast, prev_slow = fast.shift(1), slow.shift(1)
     golden = (prev_fast <= prev_slow) & (fast > slow)
     death = (prev_fast >= prev_slow) & (fast < slow)
+    if session_gap is not None:
+        golden &= ~session_gap
+        death &= ~session_gap
     out = pd.Series(None, index=fast.index, dtype=object)
     out[golden] = "golden"
     out[death] = "death"
@@ -82,12 +104,18 @@ def _local_extrema(values: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
     return is_peak, is_trough
 
 
-def _scan_bullish_failure_swing(values: np.ndarray, level: float) -> np.ndarray:
+def _scan_bullish_failure_swing(
+    values: np.ndarray, level: float, session_gap: np.ndarray | None = None
+) -> np.ndarray:
     """
     George Lane의 Bullish Failure Swing:
     과매도(level) 밑 저점 -> level 위로 반등한 고점(peak1) ->
     level 아래로 재진입하지 않는 더 높은 저점 -> peak1 돌파 시 확정.
     확정된 '바'에 True를 표시한다.
+
+    session_gap이 True인 지점(세션 경계)에서는 진행 중이던 패턴을 버리고
+    새로 찾기 시작한다 — 안 그러면 애프터마켓 마감과 다음날 프리마켓 시작
+    사이의 갭이 저점/고점으로 섞여 들어가 패턴이 오염된다.
     """
     is_peak, is_trough = _local_extrema(values)
     n = len(values)
@@ -98,6 +126,10 @@ def _scan_bullish_failure_swing(values: np.ndarray, level: float) -> np.ndarray:
 
     for i in range(n):
         v = values[i]
+
+        if session_gap is not None and session_gap[i]:
+            state = "SEEK_TROUGH1"
+            trough1 = peak1 = None
 
         if state == "SEEK_TROUGH1":
             if is_trough[i] and v < level:
@@ -136,13 +168,14 @@ def _scan_bullish_failure_swing(values: np.ndarray, level: float) -> np.ndarray:
     return confirmed
 
 
-def detect_stochastic_failure_swings(stoch_k: pd.Series) -> pd.DataFrame:
+def detect_stochastic_failure_swings(stoch_k: pd.Series, session_gap: pd.Series | None = None) -> pd.DataFrame:
     """Bullish/Bearish Failure Swing 확정 지점. Bearish는 부호를 뒤집어 동일 알고리즘 재사용."""
     values = stoch_k.to_numpy(dtype=float)
     values = np.nan_to_num(values, nan=50.0)  # 워밍업 구간 NaN은 중립값으로 채워 상태기계 오염 방지
+    gap_arr = session_gap.to_numpy() if session_gap is not None else None
 
-    bullish = _scan_bullish_failure_swing(values, level=OVERSOLD)
-    bearish = _scan_bullish_failure_swing(-values, level=-OVERBOUGHT)
+    bullish = _scan_bullish_failure_swing(values, level=OVERSOLD, session_gap=gap_arr)
+    bearish = _scan_bullish_failure_swing(-values, level=-OVERBOUGHT, session_gap=gap_arr)
 
     return pd.DataFrame(
         {"bull_failure_swing": bullish, "bear_failure_swing": bearish},
@@ -154,11 +187,12 @@ def compute_indicator_frame(df: pd.DataFrame) -> pd.DataFrame:
     """OHLCV -> 스토캐스틱/RSI + 크로스/페일러스윙 컬럼이 붙은 DataFrame."""
     stoch = compute_stochastic(df)
     rsi_df = compute_rsi_with_ma(df)
-    fs = detect_stochastic_failure_swings(stoch["stoch_k"])
+    gap = session_gap_mask(df.index)
+    fs = detect_stochastic_failure_swings(stoch["stoch_k"], session_gap=gap)
 
     out = pd.concat([df, stoch, rsi_df, fs], axis=1)
-    out["stoch_cross"] = detect_cross(stoch["stoch_k"], stoch["stoch_d"])
-    out["rsi_cross"] = detect_cross(rsi_df["rsi"], rsi_df["rsi_ma"])
+    out["stoch_cross"] = detect_cross(stoch["stoch_k"], stoch["stoch_d"], session_gap=gap)
+    out["rsi_cross"] = detect_cross(rsi_df["rsi"], rsi_df["rsi_ma"], session_gap=gap)
     return out
 
 
