@@ -1,0 +1,28 @@
+# 지표 파라미터 (engine/indicators.py의 기본값과 일치시켜 문서화 목적으로 유지)
+indicators:
+  stochastic:
+    k_period: 14
+    k_smooth: 3
+    d_smooth: 3
+  rsi:
+    period: 14
+    ma_period: 14
+  failure_swing:
+    oversold: 20
+    overbought: 80
+
+universe:
+  top_n: 100
+  lookback_days: 5          # 거래대금 랭킹에 사용하는 최근 거래일 수
+  refresh_weekday: 0        # 0=월요일. 이 요일에 실행될 때만 universe.json 재계산
+
+market_hours:
+  timezone: "America/New_York"
+  open: "09:30"
+  close: "16:00"
+
+daily_scan:
+  history_period: "6mo"     # 일봉 워밍업(스토캐/RSI/failure swing lookback)에 충분한 기간
+
+intraday_check:
+  history_period: "5d"      # yfinance 15m 데이터 제공 한계(최근 60일) 내에서 워밍업에 충분한 기간
