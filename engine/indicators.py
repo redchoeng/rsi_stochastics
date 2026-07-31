@@ -30,11 +30,24 @@ def compute_stochastic(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def calculate_rsi(series: pd.Series, period: int = RSI_PERIOD) -> pd.Series:
-    """Wilder RSI (EWM 방식)."""
+    """
+    Wilder 원조 RSI. 첫 period개는 단순평균으로 시드(seed)하고, 이후는
+    avg = (prev_avg*(period-1) + current) / period 로 재귀 평활한다.
+    (주의: ewm(span=period)의 alpha=2/(period+1)은 Wilder의 alpha=1/period와
+    달라서 TradingView/HTS 값과 어긋난다 — 실제로 겪은 버그라 재발 방지 코멘트)
+    """
     delta = series.diff()
-    gain = delta.where(delta > 0, 0.0).ewm(span=period, adjust=False).mean()
-    loss = (-delta.where(delta < 0, 0.0)).ewm(span=period, adjust=False).mean()
-    rs = gain / loss
+    gain = delta.clip(lower=0.0)
+    loss = -delta.clip(upper=0.0)
+
+    avg_gain = gain.rolling(period).mean()
+    avg_loss = loss.rolling(period).mean()
+
+    for i in range(period + 1, len(series)):
+        avg_gain.iloc[i] = (avg_gain.iloc[i - 1] * (period - 1) + gain.iloc[i]) / period
+        avg_loss.iloc[i] = (avg_loss.iloc[i - 1] * (period - 1) + loss.iloc[i]) / period
+
+    rs = avg_gain / avg_loss
     return 100 - (100 / (1 + rs))
 
 
