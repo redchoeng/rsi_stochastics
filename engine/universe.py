@@ -7,14 +7,20 @@ S&P500 + Nasdaq100 구성종목(유동성 높은 대형주 위주 후보군, ~55
 """
 from __future__ import annotations
 
+import datetime as dt
 import io
+import json
 import logging
+from pathlib import Path
+from zoneinfo import ZoneInfo
 
 import pandas as pd
 import requests
 import yfinance as yf
 
 logger = logging.getLogger(__name__)
+
+UNIVERSE_FILE = Path(__file__).parent.parent / "config" / "universe.json"
 
 SP500_WIKI_URL = "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
 # Wikipedia의 Nasdaq-100 문서는 구성종목 표를 더 이상 문서에 직접 담지 않고
@@ -100,3 +106,30 @@ def build_universe(top_n: int = 100) -> list[dict]:
     tickers = fetch_candidate_pool()
     logger.info("후보군 %d개 티커 확보, 거래대금 랭킹 계산 중", len(tickers))
     return rank_top_n_by_dollar_volume(tickers, top_n=top_n)
+
+
+def load_universe() -> list[dict]:
+    if UNIVERSE_FILE.exists():
+        return json.loads(UNIVERSE_FILE.read_text(encoding="utf-8"))
+    return []
+
+
+def save_universe(rows: list[dict]) -> None:
+    UNIVERSE_FILE.write_text(json.dumps(rows, indent=2, ensure_ascii=False), encoding="utf-8")
+
+
+def is_refresh_day(refresh_weekday: int, timezone: str = "America/New_York") -> bool:
+    return dt.datetime.now(ZoneInfo(timezone)).weekday() == refresh_weekday
+
+
+def get_or_refresh_universe(top_n: int, refresh_weekday: int, timezone: str, force: bool = False) -> list[dict]:
+    """월요일(refresh_weekday)에만, 또는 파일이 없거나 force일 때만 재계산 — 매 폴링마다 다시 랭킹하지 않기 위함."""
+    rows = load_universe()
+    if force or not rows or is_refresh_day(refresh_weekday, timezone):
+        logger.info("유니버스(top%d) 재계산 시작", top_n)
+        rows = build_universe(top_n=top_n)
+        save_universe(rows)
+        logger.info("유니버스 %d개 종목 저장 완료", len(rows))
+    else:
+        logger.info("기존 유니버스(%d개 종목) 재사용 (재계산은 월요일에만)", len(rows))
+    return rows

@@ -51,3 +51,19 @@ class TelegramNotifier:
             f"봉 시각: {trigger['bar_timestamp']} (15m)"
         )
         return self.send_message(text)
+
+    def send_daily_sell_alert(self, ticker: str, condition: str, daily_row, cross_date: str) -> bool:
+        """
+        매도는 15분봉 확인 없이 일봉 데드크로스(2/3 조건)만으로 즉시 알림.
+        진입 타이밍은 사용자가 직접 판단하는 걸 전제로 한다.
+        """
+        label = CONDITION_LABELS.get(condition, condition)
+        text = (
+            f"🔴 <b>{ticker}</b> — {label} (일봉)\n"
+            f"기준일: {cross_date}\n"
+            f"가격: {daily_row['Close']:.2f}\n"
+            f"일봉 Stoch %K/%D: {daily_row['stoch_k']:.1f} / {daily_row['stoch_d']:.1f}\n"
+            f"RSI(14): {daily_row['rsi']:.1f}\n"
+            f"⚠️ 15분봉 확인 없이 일봉만으로 알림 — 매도 타이밍은 직접 판단"
+        )
+        return self.send_message(text)

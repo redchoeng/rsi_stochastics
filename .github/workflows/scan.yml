@@ -1,13 +1,10 @@
-name: Daily Regime Scan
+name: Stock Indicator Scan
 
 on:
-  schedule:
-    # 미국장 마감 직후 (KST 05:10 ≈ UTC 20:10), 월~금
-    - cron: '10 20 * * 1-5'
-  workflow_dispatch:
+  workflow_dispatch:  # cron-job.org가 04:00~20:00 ET 내내 수 분 간격으로 이 워크플로우를 호출
 
 concurrency:
-  group: daily-scan
+  group: stock-scan
   cancel-in-progress: false
 
 jobs:
@@ -28,15 +25,22 @@ jobs:
           cache: 'pip'
       - name: Install dependencies
         run: pip install -r requirements.txt
-      - name: Run daily regime scan
-        run: python run_daily_scan.py
+      - name: Create .env
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          echo "TELEGRAM_BOT_TOKEN=$TELEGRAM_BOT_TOKEN" > .env
+          echo "TELEGRAM_CHAT_ID=$TELEGRAM_CHAT_ID" >> .env
+      - name: Run scan
+        run: python run_scan.py
       - name: Commit and push
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add config/universe.json config/daily_signals.json alerts/state.json
+          git add config/universe.json alerts/state.json
           if ! git diff --staged --quiet; then
-            git commit -m "Daily regime scan - $(date -u '+%Y-%m-%d %H:%M') UTC"
+            git commit -m "Scan state update - $(date -u '+%Y-%m-%d %H:%M') UTC"
             git pull --rebase
             git push
           fi

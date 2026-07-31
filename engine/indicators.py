@@ -222,33 +222,28 @@ def bar_conditions(row: pd.Series, direction: str) -> list[str]:
     return conditions
 
 
-def latest_daily_regime(indicator_df: pd.DataFrame, min_conditions: int = 2) -> dict | None:
+def today_daily_signal(indicator_df: pd.DataFrame, today: object, min_conditions: int = 2) -> dict | None:
     """
-    가장 최근에 3가지 조건(스토캐 크로스/failure swing/RSI 크로스) 중
-    min_conditions개 이상이 같은 날 동시에 충족된 날의 방향을 일봉 필터로 산출.
-    (1개만 맞아도 걸리던 이전 방식보다 확신도를 높이기 위해 2/3 이상으로 강화)
-    같은 날 양쪽이 동시에 min_conditions를 넘는 경우는 bullish 우선.
+    '오늘' 일봉(마지막 행) 그 자체가 min_conditions개 이상을 충족하는지만 본다
+    (latest_daily_regime처럼 과거로 거슬러 올라가 가장 최근 신호를 찾지 않음).
+    매수는 당일 신호가 나야 그날 15분봉을 보고, 매도는 당일 신호만으로 바로
+    알림을 보내는 '당일 한정' 구조라서 필요.
+    today와 마지막 봉의 날짜가 다르면(예: 프리마켓이라 오늘자 일봉이 아직
+    없음) None을 반환한다.
     """
-    bull_count = (
-        (indicator_df["stoch_cross"] == "golden").astype(int)
-        + indicator_df["bull_failure_swing"].astype(int)
-        + (indicator_df["rsi_cross"] == "golden").astype(int)
-    )
-    bear_count = (
-        (indicator_df["stoch_cross"] == "death").astype(int)
-        + indicator_df["bear_failure_swing"].astype(int)
-        + (indicator_df["rsi_cross"] == "death").astype(int)
-    )
-    bull_mask = bull_count >= min_conditions
-    bear_mask = bear_count >= min_conditions
-    any_mask = bull_mask | bear_mask
-    if not any_mask.any():
+    last_idx = indicator_df.index[-1]
+    if last_idx.date() != today:
         return None
 
-    last_idx = indicator_df.index[any_mask][-1]
-    direction = "bullish" if bull_mask.loc[last_idx] else "bearish"
-    conditions = bar_conditions(indicator_df.loc[last_idx], direction)
-    return {"direction": direction, "cross_date": str(last_idx.date()), "conditions": conditions}
+    last = indicator_df.loc[last_idx]
+    bull_conditions = bar_conditions(last, "bullish")
+    bear_conditions = bar_conditions(last, "bearish")
+
+    if len(bull_conditions) >= min_conditions:
+        return {"direction": "bullish", "cross_date": str(last_idx.date()), "conditions": bull_conditions}
+    if len(bear_conditions) >= min_conditions:
+        return {"direction": "bearish", "cross_date": str(last_idx.date()), "conditions": bear_conditions}
+    return None
 
 
 def latest_intraday_triggers(indicator_df: pd.DataFrame, direction: str) -> list[dict]:
