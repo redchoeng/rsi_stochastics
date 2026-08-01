@@ -68,6 +68,12 @@ def main() -> int:
     parser.add_argument("--dry-run", action="store_true", help="텔레그램 전송 없이 콘솔에만 출력")
     parser.add_argument("--force-universe-refresh", action="store_true")
     parser.add_argument("--limit", type=int, default=None, help="테스트용: 유니버스 상위 N개만 처리")
+    parser.add_argument(
+        "--as-of-date",
+        type=str,
+        default=None,
+        help="테스트용: 오늘 날짜(YYYY-MM-DD) 대신 이 날짜를 '오늘'로 간주 (예: 주말에 직전 거래일 기준으로 확인)",
+    )
     args = parser.parse_args()
 
     settings = load_settings()
@@ -77,7 +83,11 @@ def main() -> int:
         logger.info("미국 정규장(프리~애프터마켓) 시간이 아니므로 종료")
         return 0
 
-    today = dt.datetime.now(ZoneInfo(market_hours["timezone"])).date()
+    today = (
+        dt.date.fromisoformat(args.as_of_date)
+        if args.as_of_date
+        else dt.datetime.now(ZoneInfo(market_hours["timezone"])).date()
+    )
 
     universe_rows = get_or_refresh_universe(
         top_n=settings["universe"]["top_n"],
