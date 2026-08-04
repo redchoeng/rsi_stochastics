@@ -38,7 +38,9 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add config/universe.json alerts/state.json
+          for f in config/universe.json alerts/state.json; do
+            [ -f "$f" ] && git add "$f"
+          done
           if ! git diff --staged --quiet; then
             git commit -m "Scan state update - $(date -u '+%Y-%m-%d %H:%M') UTC"
             git pull --rebase
