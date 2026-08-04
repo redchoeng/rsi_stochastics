@@ -101,7 +101,7 @@ def main() -> int:
 
     notifier = TelegramNotifier()
     state = state_store.load_state()
-    buy_count = sell_count = 0
+    candidate_count = buy_count = sell_count = 0
 
     for ticker in tickers:
         try:
@@ -129,7 +129,17 @@ def main() -> int:
                 sell_count += 1
             continue
 
-        # bullish: 오늘 일봉이 조건을 만족했으니 오늘 15분봉에서 진입 트리거 확인
+        # bullish: 먼저 '오늘 일봉 매수 후보' 1차 알림 (당일 1회만), 그 다음 15분봉 진입 트리거 확인
+        daily_last = daily_ind.iloc[-1]
+        for condition in signal["conditions"]:
+            if state_store.already_alerted(state, ticker, condition, signal["cross_date"]):
+                continue
+            logger.info("%s bullish 일봉 후보 알림: %s", ticker, condition)
+            if not args.dry_run:
+                notifier.send_daily_buy_candidate_alert(ticker, condition, daily_last, signal["cross_date"])
+            state_store.mark_alerted(state, ticker, condition, signal["cross_date"])
+            candidate_count += 1
+
         try:
             intraday_df = fetch_intraday_15m(ticker, period=settings["intraday_check"]["history_period"])
             if intraday_df.empty:
@@ -154,7 +164,10 @@ def main() -> int:
 
     state = state_store.prune_old_entries(state)
     state_store.save_state(state)
-    logger.info("스캔 완료: 매수 알림 %d건, 매도 알림 %d건", buy_count, sell_count)
+    logger.info(
+        "스캔 완료: 매수 후보 알림 %d건, 매수 진입 알림 %d건, 매도 알림 %d건",
+        candidate_count, buy_count, sell_count,
+    )
     return 0
 
 
