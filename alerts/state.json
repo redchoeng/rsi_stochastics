@@ -35,5 +35,10 @@
   "SHOP|stoch_golden_cross|2026-08-05": true,
   "SHOP|rsi_golden_cross|2026-08-05": true,
   "DHR|stoch_golden_cross|2026-08-05": true,
-  "DHR|rsi_golden_cross|2026-08-05": true
+  "DHR|rsi_golden_cross|2026-08-05": true,
+  "LIN|stoch_bull_failure_swing|2026-08-05": true,
+  "LIN|rsi_golden_cross|2026-08-05": true,
+  "DHR|stoch_bull_failure_swing|2026-08-05 10:00:00-04:00": true,
+  "UBER|stoch_death_cross|2026-08-05": true,
+  "UBER|rsi_death_cross|2026-08-05": true
 }
