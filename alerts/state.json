@@ -25,5 +25,15 @@
   "HD|rsi_golden_cross|2026-08-04 18:30:00-04:00": true,
   "HD|rsi_golden_cross|2026-08-04 19:30:16-04:00": true,
   "PG|stoch_golden_cross|2026-08-04 19:45:39-04:00": true,
-  "PG|rsi_golden_cross|2026-08-04 19:45:39-04:00": true
+  "PG|rsi_golden_cross|2026-08-04 19:45:39-04:00": true,
+  "LLY|stoch_golden_cross|2026-08-05": true,
+  "LLY|rsi_golden_cross|2026-08-05": true,
+  "LLY|rsi_golden_cross|2026-08-05 09:30:00-04:00": true,
+  "VZ|stoch_death_cross|2026-08-05": true,
+  "VZ|stoch_bear_failure_swing|2026-08-05": true,
+  "VZ|rsi_death_cross|2026-08-05": true,
+  "SHOP|stoch_golden_cross|2026-08-05": true,
+  "SHOP|rsi_golden_cross|2026-08-05": true,
+  "DHR|stoch_golden_cross|2026-08-05": true,
+  "DHR|rsi_golden_cross|2026-08-05": true
 }
