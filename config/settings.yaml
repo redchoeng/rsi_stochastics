@@ -13,7 +13,9 @@ indicators:
 
 universe:
   top_n: 100
-  lookback_days: 5          # 거래대금 랭킹에 사용하는 최근 거래일 수
+  liquidity_floor_n: 300    # 1단계: 거래대금 상위 이만큼으로 유동성 최소 기준만 거름
+  lookback_days: 5          # 거래대금 계산에 쓰는 최근 거래일 수
+  volatility_period: 14     # 2단계: ATR% 계산 기간 (이 안에서 변동성 상위 top_n개 재랭킹)
   refresh_weekday: 0        # 0=월요일. 이 요일에 실행될 때만 universe.json 재계산
 
 market_hours:

@@ -108,6 +108,9 @@ def main() -> int:
         top_n=settings["universe"]["top_n"],
         refresh_weekday=settings["universe"]["refresh_weekday"],
         timezone=market_hours["timezone"],
+        liquidity_floor_n=settings["universe"]["liquidity_floor_n"],
+        lookback_days=settings["universe"]["lookback_days"],
+        volatility_period=settings["universe"]["volatility_period"],
         force=args.force_universe_refresh,
     )
     tickers = [row["ticker"] for row in universe_rows]
