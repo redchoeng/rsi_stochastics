@@ -49,17 +49,32 @@ def is_market_open(market_hours: dict) -> bool:
     return open_t <= now.time() <= close_t
 
 
+def _regular_session_bounds(market_hours: dict) -> tuple[dt.time, dt.time]:
+    return (
+        dt.datetime.strptime(market_hours["regular_open"], "%H:%M").time(),
+        dt.datetime.strptime(market_hours["regular_close"], "%H:%M").time(),
+    )
+
+
 def classify_session(bar_timestamp: str, market_hours: dict) -> str:
     """봉 시각이 프리마켓/정규장/애프터마켓 중 어디인지 (알림에서 노이즈 가능성 판단용)."""
     ts = dt.datetime.fromisoformat(bar_timestamp)
-    regular_open = dt.datetime.strptime(market_hours["regular_open"], "%H:%M").time()
-    regular_close = dt.datetime.strptime(market_hours["regular_close"], "%H:%M").time()
+    regular_open, regular_close = _regular_session_bounds(market_hours)
     t = ts.timetz().replace(tzinfo=None)
     if t < regular_open:
         return "premarket"
     if t >= regular_close:
         return "afterhours"
     return "regular"
+
+
+def regular_session_volume_baseline(intraday_ind, market_hours: dict) -> float:
+    """정규장 15분봉 거래량의 중앙값 — 프리/애프터마켓의 '거래량 너무 없는' 봉을 걸러내는 기준선."""
+    regular_open, regular_close = _regular_session_bounds(market_hours)
+    times = intraday_ind.index.map(lambda ts: ts.timetz().replace(tzinfo=None))
+    is_regular = (times >= regular_open) & (times < regular_close)
+    regular_volume = intraday_ind.loc[is_regular, "Volume"]
+    return float(regular_volume.median()) if len(regular_volume) else 0.0
 
 
 def main() -> int:
@@ -118,27 +133,27 @@ def main() -> int:
             continue
 
         if signal["direction"] == "bearish":
-            daily_last = daily_ind.iloc[-1]
-            for condition in signal["conditions"]:
-                if state_store.already_alerted(state, ticker, condition, signal["cross_date"]):
-                    continue
-                logger.info("%s bearish 일봉 알림: %s", ticker, condition)
+            if not state_store.already_alerted(state, ticker, "daily_sell", signal["cross_date"]):
+                daily_last = daily_ind.iloc[-1]
+                logger.info("%s bearish 일봉 알림: %s", ticker, "+".join(signal["conditions"]))
                 if not args.dry_run:
-                    notifier.send_daily_sell_alert(ticker, condition, daily_last, signal["cross_date"])
-                state_store.mark_alerted(state, ticker, condition, signal["cross_date"])
+                    notifier.send_daily_sell_alert(ticker, signal["conditions"], daily_last, signal["cross_date"])
+                state_store.mark_alerted(state, ticker, "daily_sell", signal["cross_date"])
                 sell_count += 1
             continue
 
-        # bullish: 먼저 '오늘 일봉 매수 후보' 1차 알림 (당일 1회만), 그 다음 15분봉 진입 트리거 확인
-        daily_last = daily_ind.iloc[-1]
-        for condition in signal["conditions"]:
-            if state_store.already_alerted(state, ticker, condition, signal["cross_date"]):
-                continue
-            logger.info("%s bullish 일봉 후보 알림: %s", ticker, condition)
+        # bullish: 먼저 '오늘 일봉 매수 후보' 1차 알림 (당일 1회, 조건 여러 개면 합쳐서 한 통)
+        if not state_store.already_alerted(state, ticker, "daily_candidate", signal["cross_date"]):
+            daily_last = daily_ind.iloc[-1]
+            logger.info("%s bullish 일봉 후보 알림: %s", ticker, "+".join(signal["conditions"]))
             if not args.dry_run:
-                notifier.send_daily_buy_candidate_alert(ticker, condition, daily_last, signal["cross_date"])
-            state_store.mark_alerted(state, ticker, condition, signal["cross_date"])
+                notifier.send_daily_buy_candidate_alert(ticker, signal["conditions"], daily_last, signal["cross_date"])
+            state_store.mark_alerted(state, ticker, "daily_candidate", signal["cross_date"])
             candidate_count += 1
+
+        # 오늘 이미 진입 타이밍을 추천했으면 끝 — 하루에 한 번만 추천한다
+        if state_store.already_alerted(state, ticker, "entry_alert", signal["cross_date"]):
+            continue
 
         try:
             intraday_df = fetch_intraday_15m(ticker, period=settings["intraday_check"]["history_period"])
@@ -152,15 +167,27 @@ def main() -> int:
             logger.exception("%s 15분봉 처리 중 오류, 스킵", ticker)
             continue
 
-        for trigger in triggers:
-            if state_store.already_alerted(state, ticker, trigger["condition"], trigger["bar_timestamp"]):
-                continue
-            trigger["session"] = classify_session(trigger["bar_timestamp"], market_hours)
-            logger.info("%s bullish 15분봉 트리거: %s (%s)", ticker, trigger["condition"], trigger["session"])
-            if not args.dry_run:
-                notifier.send_trigger_alert(ticker, "bullish", trigger)
-            state_store.mark_alerted(state, ticker, trigger["condition"], trigger["bar_timestamp"])
-            buy_count += 1
+        if not triggers:
+            continue
+
+        last_bar = triggers[0]  # 가격/지표값은 triggers 전부 동일 봉 기준이라 하나만 있으면 됨
+        volume_baseline = regular_session_volume_baseline(intraday_ind, market_hours)
+        min_ratio = settings["intraday_check"]["min_volume_ratio"]
+        bar_volume = float(intraday_ind.iloc[-1]["Volume"])
+        if volume_baseline and bar_volume < volume_baseline * min_ratio:
+            logger.info(
+                "%s 15분봉 조건 충족했지만 거래량 부족(%.0f < 정규장 중앙값의 %.0f%%)으로 스킵",
+                ticker, bar_volume, min_ratio * 100,
+            )
+            continue
+
+        conditions = [t["condition"] for t in triggers]
+        session = classify_session(last_bar["bar_timestamp"], market_hours)
+        logger.info("%s bullish 15분봉 진입 추천: %s (%s)", ticker, "+".join(conditions), session)
+        if not args.dry_run:
+            notifier.send_trigger_alert(ticker, conditions, last_bar, session)
+        state_store.mark_alerted(state, ticker, "entry_alert", signal["cross_date"])
+        buy_count += 1
 
     state = state_store.prune_old_entries(state)
     state_store.save_state(state)

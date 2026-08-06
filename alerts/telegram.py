@@ -17,6 +17,12 @@ CONDITION_LABELS = {
     "rsi_death_cross": "RSI 데드크로스",
 }
 
+SESSION_LABELS = {"premarket": "⚠️ 프리마켓", "afterhours": "⚠️ 애프터마켓", "regular": "정규장"}
+
+
+def _join_labels(conditions: list[str]) -> str:
+    return " + ".join(CONDITION_LABELS.get(c, c) for c in conditions)
+
 
 class TelegramNotifier:
     def __init__(self, token: str | None = None, chat_id: str | None = None):
@@ -37,44 +43,47 @@ class TelegramNotifier:
             logger.exception("텔레그램 전송 실패")
             return False
 
-    def send_trigger_alert(self, ticker: str, direction: str, trigger: dict) -> bool:
-        label = CONDITION_LABELS.get(trigger["condition"], trigger["condition"])
-        emoji = "🟢" if direction == "bullish" else "🔴"
-        session = trigger.get("session", "regular")
-        session_label = {"premarket": "⚠️ 프리마켓", "afterhours": "⚠️ 애프터마켓", "regular": "정규장"}[session]
+    def send_trigger_alert(self, ticker: str, conditions: list[str], bar: dict, session: str) -> bool:
+        """
+        오늘의 추천 매수 타이밍 — 하루 중 처음으로 유효한(거래량 필터 통과) 15분봉
+        신호가 나온 시점 하나만 보낸다 (당일 재알림 없음).
+        """
+        label = _join_labels(conditions)
+        session_label = SESSION_LABELS[session]
         text = (
-            f"{emoji} <b>{ticker}</b> — {label}\n"
+            f"🟢 <b>{ticker}</b> — {label}\n"
+            f"오늘의 매수 타이밍 추천\n"
             f"세션: {session_label}\n"
-            f"가격: {trigger['price']:.2f}\n"
-            f"Stoch %K/%D: {trigger['stoch_k']:.1f} / {trigger['stoch_d']:.1f}\n"
-            f"RSI(14): {trigger['rsi']:.1f}\n"
-            f"봉 시각: {trigger['bar_timestamp']} (15m)"
+            f"가격: {bar['price']:.2f}\n"
+            f"Stoch %K/%D: {bar['stoch_k']:.1f} / {bar['stoch_d']:.1f}\n"
+            f"RSI(14): {bar['rsi']:.1f}\n"
+            f"봉 시각: {bar['bar_timestamp']} (15m)"
         )
         return self.send_message(text)
 
-    def send_daily_buy_candidate_alert(self, ticker: str, condition: str, daily_row, cross_date: str) -> bool:
+    def send_daily_buy_candidate_alert(self, ticker: str, conditions: list[str], daily_row, cross_date: str) -> bool:
         """
         오늘 일봉이 매수 조건(2/3)을 만족했다는 1차 알림 — 아직 진입 신호는 아니고,
         이제부터 오늘 15분봉에서 같은 계열 조건이 나오는지 지켜보는 중이라는 안내.
-        실제 진입 알림은 send_trigger_alert가 별도로 보낸다.
+        실제 진입 알림은 send_trigger_alert가 하루 한 번만 별도로 보낸다.
         """
-        label = CONDITION_LABELS.get(condition, condition)
+        label = _join_labels(conditions)
         text = (
             f"🟡 <b>{ticker}</b> — {label} (일봉, 매수 후보)\n"
             f"기준일: {cross_date}\n"
             f"가격: {daily_row['Close']:.2f}\n"
             f"일봉 Stoch %K/%D: {daily_row['stoch_k']:.1f} / {daily_row['stoch_d']:.1f}\n"
             f"RSI(14): {daily_row['rsi']:.1f}\n"
-            f"➡️ 오늘 15분봉에서 같은 계열 신호 나오면 진입 알림 별도 전송"
+            f"➡️ 오늘 15분봉에서 같은 계열 신호 나오면 진입 타이밍 별도 전송"
         )
         return self.send_message(text)
 
-    def send_daily_sell_alert(self, ticker: str, condition: str, daily_row, cross_date: str) -> bool:
+    def send_daily_sell_alert(self, ticker: str, conditions: list[str], daily_row, cross_date: str) -> bool:
         """
         매도는 15분봉 확인 없이 일봉 데드크로스(2/3 조건)만으로 즉시 알림.
         진입 타이밍은 사용자가 직접 판단하는 걸 전제로 한다.
         """
-        label = CONDITION_LABELS.get(condition, condition)
+        label = _join_labels(conditions)
         text = (
             f"🔴 <b>{ticker}</b> — {label} (일봉)\n"
             f"기준일: {cross_date}\n"
