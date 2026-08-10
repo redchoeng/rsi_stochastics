@@ -372,6 +372,12 @@
     "last_close": 178.25
   },
   {
+    "ticker": "MNST",
+    "dollar_volume": 2952307368.818062,
+    "atr_percent": 4.957566864846232,
+    "last_close": 91.43000030517578
+  },
+  {
     "ticker": "ECHO",
     "dollar_volume": 2287814169.7209473,
     "atr_percent": 4.8529770280835685,
@@ -592,11 +598,5 @@
     "dollar_volume": 4749508641.894043,
     "atr_percent": 3.8803784625265085,
     "last_close": 314.95001220703125
-  },
-  {
-    "ticker": "SLB",
-    "dollar_volume": 2595440465.664612,
-    "atr_percent": 3.869495070021154,
-    "last_close": 53.20000076293945
   }
 ]
