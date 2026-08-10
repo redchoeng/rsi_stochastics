@@ -270,6 +270,12 @@
     "last_close": 124.87999725341797
   },
   {
+    "ticker": "HPE",
+    "dollar_volume": 4785159270.519638,
+    "atr_percent": 5.712003183153549,
+    "last_close": 53.220001220703125
+  },
+  {
     "ticker": "MSTR",
     "dollar_volume": 8027453219.702148,
     "atr_percent": 5.707286553860203,
@@ -592,11 +598,5 @@
     "dollar_volume": 2533096628.009033,
     "atr_percent": 3.839022401437103,
     "last_close": 189.52000427246094
-  },
-  {
-    "ticker": "F",
-    "dollar_volume": 3272607525.296402,
-    "atr_percent": 3.826895573458048,
-    "last_close": 13.979999542236328
   }
 ]
