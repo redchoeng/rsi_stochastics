@@ -402,6 +402,12 @@
     "last_close": 816.9000244140625
   },
   {
+    "ticker": "APH",
+    "dollar_volume": 5568474131.37207,
+    "atr_percent": 4.722358728057099,
+    "last_close": 169.17999267578125
+  },
+  {
     "ticker": "INTU",
     "dollar_volume": 5531719281.173706,
     "atr_percent": 4.69704767580913,
@@ -592,11 +598,5 @@
     "dollar_volume": 2533096628.009033,
     "atr_percent": 3.839022401437103,
     "last_close": 189.52000427246094
-  },
-  {
-    "ticker": "F",
-    "dollar_volume": 3272607525.296402,
-    "atr_percent": 3.826895573458048,
-    "last_close": 13.979999542236328
   }
 ]
