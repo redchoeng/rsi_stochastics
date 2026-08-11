@@ -1,5 +1,4 @@
 {
-  "PLTR|rsi_golden_cross|2026-08-04 09:30:00-04:00": true,
   "PLTR|stoch_golden_cross|2026-08-04 11:30:00-04:00": true,
   "HD|stoch_golden_cross|2026-08-04 11:45:00-04:00": true,
   "HD|stoch_golden_cross|2026-08-04 12:30:00-04:00": true,
@@ -80,5 +79,6 @@
   "IBKR|daily_candidate|2026-08-10": true,
   "VLO|daily_candidate|2026-08-10": true,
   "CMI|daily_sell|2026-08-10": true,
-  "MNST|daily_candidate|2026-08-10": true
+  "MNST|daily_candidate|2026-08-10": true,
+  "SMCI|daily_candidate|2026-08-11": true
 }
