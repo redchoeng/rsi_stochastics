@@ -1,5 +1,4 @@
 {
-  "DHR|stoch_bull_failure_swing|2026-08-05 10:00:00-04:00": true,
   "SHOP|stoch_golden_cross|2026-08-05 11:30:00-04:00": true,
   "DHR|stoch_golden_cross|2026-08-05 11:30:00-04:00": true,
   "SHOP|stoch_golden_cross|2026-08-05 12:45:00-04:00": true,
@@ -63,5 +62,12 @@
   "VRT|daily_candidate|2026-08-12": true,
   "ALNY|daily_candidate|2026-08-12": true,
   "FIX|daily_candidate|2026-08-12": true,
-  "ADSK|daily_sell|2026-08-12": true
+  "ADSK|daily_sell|2026-08-12": true,
+  "NBIS|entry_alert|2026-08-12": true,
+  "VRT|entry_alert|2026-08-12": true,
+  "ALNY|entry_alert|2026-08-12": true,
+  "NRG|daily_candidate|2026-08-12": true,
+  "IT|daily_sell|2026-08-12": true,
+  "ACN|daily_sell|2026-08-12": true,
+  "CRM|daily_sell|2026-08-12": true
 }
