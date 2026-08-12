@@ -58,5 +58,10 @@
   "WDAY|daily_sell|2026-08-12": true,
   "DVA|daily_sell|2026-08-12": true,
   "CTSH|daily_sell|2026-08-12": true,
-  "ADBE|daily_sell|2026-08-12": true
+  "ADBE|daily_sell|2026-08-12": true,
+  "NBIS|daily_candidate|2026-08-12": true,
+  "VRT|daily_candidate|2026-08-12": true,
+  "ALNY|daily_candidate|2026-08-12": true,
+  "FIX|daily_candidate|2026-08-12": true,
+  "ADSK|daily_sell|2026-08-12": true
 }
