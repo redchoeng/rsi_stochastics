@@ -1,8 +1,4 @@
 {
-  "SMCI|daily_candidate|2026-08-11": true,
-  "ALNY|daily_candidate|2026-08-11": true,
-  "HPQ|daily_sell|2026-08-11": true,
-  "VRT|daily_candidate|2026-08-11": true,
   "MU|daily_candidate|2026-08-12": true,
   "AMD|daily_candidate|2026-08-12": true,
   "INTC|daily_candidate|2026-08-12": true,
@@ -46,5 +42,6 @@
   "KKR|daily_sell|2026-08-17": true,
   "META|daily_sell|2026-08-17": true,
   "EXPE|daily_sell|2026-08-17": true,
-  "CEG|daily_sell|2026-08-17": true
+  "CEG|daily_sell|2026-08-17": true,
+  "MSTR|daily_candidate|2026-08-17": true
 }
