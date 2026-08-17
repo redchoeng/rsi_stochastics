@@ -504,12 +504,6 @@
     "last_close": 375.760009765625
   },
   {
-    "ticker": "CF",
-    "dollar_volume": 1306733024.6348572,
-    "atr_percent": 3.904374571201669,
-    "last_close": 117.77999877929688
-  },
-  {
     "ticker": "FCX",
     "dollar_volume": 3227503653.6573715,
     "atr_percent": 3.860777666227317,
@@ -598,5 +592,11 @@
     "dollar_volume": 3718059331.8233643,
     "atr_percent": 3.6468130595247095,
     "last_close": 212.72000122070312
+  },
+  {
+    "ticker": "FERG",
+    "dollar_volume": 2028373389.1449738,
+    "atr_percent": 3.64430102245883,
+    "last_close": 244.97999572753906
   }
 ]
