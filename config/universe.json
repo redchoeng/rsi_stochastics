@@ -552,6 +552,12 @@
     "last_close": 278.20001220703125
   },
   {
+    "ticker": "KEYS",
+    "dollar_volume": 1780136192.2555237,
+    "atr_percent": 3.7770219032087744,
+    "last_close": 361.1499938964844
+  },
+  {
     "ticker": "IDXX",
     "dollar_volume": 1376006379.2289429,
     "atr_percent": 3.7557855884753457,
@@ -592,11 +598,5 @@
     "dollar_volume": 3718059331.8233643,
     "atr_percent": 3.6468130595247095,
     "last_close": 212.72000122070312
-  },
-  {
-    "ticker": "FERG",
-    "dollar_volume": 2028373389.1449738,
-    "atr_percent": 3.64430102245883,
-    "last_close": 244.97999572753906
   }
 ]
