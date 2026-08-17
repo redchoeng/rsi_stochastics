@@ -342,12 +342,6 @@
     "last_close": 160.00999450683594
   },
   {
-    "ticker": "JBL",
-    "dollar_volume": 1965076831.6558838,
-    "atr_percent": 4.68564403657273,
-    "last_close": 363.1000061035156
-  },
-  {
     "ticker": "ADBE",
     "dollar_volume": 5589497572.04895,
     "atr_percent": 4.657926491857666,
@@ -358,6 +352,12 @@
     "dollar_volume": 2660583110.623169,
     "atr_percent": 4.631128697507163,
     "last_close": 33.5
+  },
+  {
+    "ticker": "JBL",
+    "dollar_volume": 1965076831.6558838,
+    "atr_percent": 4.62446419991099,
+    "last_close": 363.1000061035156
   },
   {
     "ticker": "GEV",
@@ -420,6 +420,12 @@
     "last_close": 167.11000061035156
   },
   {
+    "ticker": "HUM",
+    "dollar_volume": 1792781205.1391602,
+    "atr_percent": 4.325004401115972,
+    "last_close": 389.04998779296875
+  },
+  {
     "ticker": "CRM",
     "dollar_volume": 11326774956.58722,
     "atr_percent": 4.308428880043894,
@@ -456,15 +462,9 @@
     "last_close": 216.9499969482422
   },
   {
-    "ticker": "HUM",
-    "dollar_volume": 1792781205.1391602,
-    "atr_percent": 4.2220065211595905,
-    "last_close": 389.04998779296875
-  },
-  {
     "ticker": "CMI",
     "dollar_volume": 1974281183.947754,
-    "atr_percent": 4.08366960897842,
+    "atr_percent": 4.1611800931153455,
     "last_close": 631.260009765625
   },
   {
@@ -499,15 +499,9 @@
   },
   {
     "ticker": "ARES",
-    "dollar_volume": 1485878578.1066895,
-    "atr_percent": 3.9763819035011103,
+    "dollar_volume": 1778087576.6113281,
+    "atr_percent": 3.9538162599016053,
     "last_close": 144.02000427246094
-  },
-  {
-    "ticker": "KEYS",
-    "dollar_volume": 1523540629.0924072,
-    "atr_percent": 3.960890339242287,
-    "last_close": 357.82000732421875
   },
   {
     "ticker": "EBAY",
@@ -552,6 +546,12 @@
     "last_close": 243.75
   },
   {
+    "ticker": "RMD",
+    "dollar_volume": 1505850509.12323,
+    "atr_percent": 3.770955426812029,
+    "last_close": 224.4600067138672
+  },
+  {
     "ticker": "AMZN",
     "dollar_volume": 42292982102.33765,
     "atr_percent": 3.740991977755058,
@@ -562,6 +562,12 @@
     "dollar_volume": 4264568251.867676,
     "atr_percent": 3.7277677763297046,
     "last_close": 217.02000427246094
+  },
+  {
+    "ticker": "MELI",
+    "dollar_volume": 4531453822.180176,
+    "atr_percent": 3.72473402252635,
+    "last_close": 1844.5799560546875
   },
   {
     "ticker": "CEG",
@@ -592,11 +598,5 @@
     "dollar_volume": 2926839300.2334595,
     "atr_percent": 3.6779944116456043,
     "last_close": 140.75999450683594
-  },
-  {
-    "ticker": "TXN",
-    "dollar_volume": 6858978307.055664,
-    "atr_percent": 3.671323020017531,
-    "last_close": 279.5799865722656
   }
 ]
