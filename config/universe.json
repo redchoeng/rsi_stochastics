@@ -456,12 +456,6 @@
     "last_close": 881.6500244140625
   },
   {
-    "ticker": "ARES",
-    "dollar_volume": 1734867179.095581,
-    "atr_percent": 4.105096782378459,
-    "last_close": 141.33999633789062
-  },
-  {
     "ticker": "HUM",
     "dollar_volume": 1553168574.4296265,
     "atr_percent": 4.094258644975826,
@@ -484,6 +478,12 @@
     "dollar_volume": 18841818752.503532,
     "atr_percent": 4.037706643229312,
     "last_close": 112.9000015258789
+  },
+  {
+    "ticker": "ARES",
+    "dollar_volume": 1488299681.35083,
+    "atr_percent": 3.998210996464128,
+    "last_close": 141.33999633789062
   },
   {
     "ticker": "ADSK",
@@ -552,6 +552,12 @@
     "last_close": 278.20001220703125
   },
   {
+    "ticker": "KEYS",
+    "dollar_volume": 1780136192.2555237,
+    "atr_percent": 3.7770219032087744,
+    "last_close": 361.1499938964844
+  },
+  {
     "ticker": "IDXX",
     "dollar_volume": 1376006379.2289429,
     "atr_percent": 3.7557855884753457,
@@ -592,11 +598,5 @@
     "dollar_volume": 3718059331.8233643,
     "atr_percent": 3.6468130595247095,
     "last_close": 212.72000122070312
-  },
-  {
-    "ticker": "FERG",
-    "dollar_volume": 2028373389.1449738,
-    "atr_percent": 3.64430102245883,
-    "last_close": 244.97999572753906
   }
 ]
