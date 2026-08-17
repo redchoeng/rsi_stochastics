@@ -132,12 +132,6 @@
     "last_close": 418.7900085449219
   },
   {
-    "ticker": "AXON",
-    "dollar_volume": 3131599470.440674,
-    "atr_percent": 6.957299920783104,
-    "last_close": 612.8300170898438
-  },
-  {
     "ticker": "LRCX",
     "dollar_volume": 12639650925.152588,
     "atr_percent": 6.95287389045646,
@@ -148,6 +142,12 @@
     "dollar_volume": 2754562562.927246,
     "atr_percent": 6.8337862559566895,
     "last_close": 225.55999755859375
+  },
+  {
+    "ticker": "AXON",
+    "dollar_volume": 3131599470.440674,
+    "atr_percent": 6.75997085776644,
+    "last_close": 612.8300170898438
   },
   {
     "ticker": "FICO",
@@ -499,9 +499,15 @@
   },
   {
     "ticker": "ARES",
-    "dollar_volume": 1778087576.6113281,
-    "atr_percent": 3.9538162599016053,
+    "dollar_volume": 1485878578.1066895,
+    "atr_percent": 3.9763819035011103,
     "last_close": 144.02000427246094
+  },
+  {
+    "ticker": "KEYS",
+    "dollar_volume": 1523540629.0924072,
+    "atr_percent": 3.960890339242287,
+    "last_close": 357.82000732421875
   },
   {
     "ticker": "EBAY",
@@ -586,12 +592,6 @@
     "dollar_volume": 2926839300.2334595,
     "atr_percent": 3.6779944116456043,
     "last_close": 140.75999450683594
-  },
-  {
-    "ticker": "KEYS",
-    "dollar_volume": 1506894630.7800293,
-    "atr_percent": 3.675231392939281,
-    "last_close": 357.82000732421875
   },
   {
     "ticker": "TXN",
