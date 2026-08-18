@@ -58,5 +58,9 @@
   "DASH|daily_candidate|2026-08-18": true,
   "AXON|daily_candidate|2026-08-18": true,
   "MRVL|daily_sell|2026-08-18": true,
-  "CMI|daily_sell|2026-08-18": true
+  "CMI|daily_sell|2026-08-18": true,
+  "AXON|entry_alert|2026-08-18": true,
+  "COIN|daily_sell|2026-08-18": true,
+  "FIX|daily_sell|2026-08-18": true,
+  "HOOD|daily_sell|2026-08-18": true
 }
