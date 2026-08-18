@@ -20,6 +20,8 @@ import pandas as pd
 import requests
 import yfinance as yf
 
+from engine.indicators import compute_atr
+
 logger = logging.getLogger(__name__)
 
 UNIVERSE_FILE = Path(__file__).parent.parent / "config" / "universe.json"
@@ -70,14 +72,9 @@ def fetch_candidate_pool() -> list[str]:
 
 
 def compute_atr_percent(df: pd.DataFrame, period: int = 14) -> float:
-    """최근 period일 Average True Range를 현재가 대비 %로 환산 (변동성 랭킹용)."""
-    high, low, close = df["High"], df["Low"], df["Close"]
-    prev_close = close.shift(1)
-    true_range = pd.concat(
-        [high - low, (high - prev_close).abs(), (low - prev_close).abs()], axis=1
-    ).max(axis=1)
-    atr = true_range.rolling(period).mean().iloc[-1]
-    last_close = close.iloc[-1]
+    """최근 period일 ATR을 현재가 대비 %로 환산 (변동성 랭킹용)."""
+    atr = compute_atr(df, period=period).iloc[-1]
+    last_close = df["Close"].iloc[-1]
     if pd.isna(atr) or not last_close:
         return 0.0
     return float(atr / last_close * 100)

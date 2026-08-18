@@ -38,7 +38,7 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          for f in config/universe.json alerts/state.json; do
+          for f in config/universe.json alerts/state.json alerts/positions.json alerts/telegram_offset.json; do
             [ -f "$f" ] && git add "$f"
           done
           if ! git diff --staged --quiet; then

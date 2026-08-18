@@ -19,6 +19,16 @@ OVERSOLD = 20.0
 OVERBOUGHT = 80.0
 
 
+def compute_atr(df: pd.DataFrame, period: int = 14) -> pd.Series:
+    """Average True Range (절대 가격 단위). universe.py의 ATR%%와 exit_strategy의 트레일링 스톱이 공유."""
+    high, low, close = df["High"], df["Low"], df["Close"]
+    prev_close = close.shift(1)
+    true_range = pd.concat(
+        [high - low, (high - prev_close).abs(), (low - prev_close).abs()], axis=1
+    ).max(axis=1)
+    return true_range.rolling(period).mean()
+
+
 def compute_stochastic(df: pd.DataFrame) -> pd.DataFrame:
     """Slow Stochastic(14,3,3): fast %K(14) -> %K = SMA3(fast) -> %D = SMA3(%K)."""
     low_min = df["Low"].rolling(STOCH_K_PERIOD).min()

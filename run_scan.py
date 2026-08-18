@@ -19,9 +19,11 @@ from zoneinfo import ZoneInfo
 import yaml
 from dotenv import load_dotenv
 
+from alerts import positions as position_store
 from alerts import state as state_store
 from alerts.telegram import TelegramNotifier
 from engine.data_fetcher import fetch_daily, fetch_intraday_15m
+from engine.exit_strategy import evaluate_position_from_daily
 from engine.indicators import compute_indicator_frame, latest_intraday_triggers, today_daily_signal
 from engine.universe import get_or_refresh_universe
 
@@ -119,7 +121,41 @@ def main() -> int:
 
     notifier = TelegramNotifier()
     state = state_store.load_state()
-    candidate_count = buy_count = sell_count = 0
+    candidate_count = buy_count = sell_count = exit_count = 0
+
+    # /buy, /sell, /positions 명령 처리 — 알림이 떠도 실제로 산 종목만 여기서 추적된다
+    positions = position_store.load_positions()
+    positions = position_store.process_telegram_commands(notifier, str(today), positions, dry_run=args.dry_run)
+
+    # ATR 트레일링 스톱 청산 체크 — 이번 주 유니버스에 없어도(팔지 않은 종목은) 계속 추적
+    for ticker, pos in list(positions.items()):
+        try:
+            daily_df = fetch_daily(ticker, period=settings["daily_scan"]["history_period"])
+            if daily_df.empty:
+                continue
+            result = evaluate_position_from_daily(
+                daily_df,
+                highest_price=pos["highest_price"],
+                atr_period=settings["exit_strategy"]["atr_period"],
+                multiplier=settings["exit_strategy"]["atr_multiplier"],
+            )
+            if result is None:
+                continue  # ATR 워밍업 중
+            pos["highest_price"] = result["highest_price"]
+            if result["should_exit"]:
+                current_price = float(daily_df["Close"].iloc[-1])
+                logger.info("%s ATR 트레일링 스톱 도달: 진입 %.2f -> 현재 %.2f", ticker, pos["entry_price"], current_price)
+                if not args.dry_run:
+                    notifier.send_exit_alert(
+                        ticker, pos["entry_price"], current_price, result["highest_price"], result["stop_level"]
+                    )
+                del positions[ticker]
+                exit_count += 1
+        except Exception:
+            logger.exception("%s 포지션 청산 체크 중 오류, 스킵", ticker)
+            continue
+
+    position_store.save_positions(positions)
 
     for ticker in tickers:
         try:
@@ -195,8 +231,8 @@ def main() -> int:
     state = state_store.prune_old_entries(state)
     state_store.save_state(state)
     logger.info(
-        "스캔 완료: 매수 후보 알림 %d건, 매수 진입 알림 %d건, 매도 알림 %d건",
-        candidate_count, buy_count, sell_count,
+        "스캔 완료: 매수 후보 알림 %d건, 매수 진입 알림 %d건, 매도 알림 %d건, ATR 청산 %d건",
+        candidate_count, buy_count, sell_count, exit_count,
     )
     return 0
 

@@ -45,6 +45,14 @@ def fetch_daily(ticker: str, period: str = "6mo") -> pd.DataFrame:
     return df.dropna(subset=["Close", "High", "Low"]) if not df.empty else df
 
 
+def fetch_last_price(ticker: str) -> float | None:
+    """/buy 명령에서 가격 생략 시 쓰는 현재가 (최근 일봉 종가, 정규장 중이면 실시간 반영)."""
+    df = fetch_daily(ticker, period="5d")
+    if df.empty:
+        return None
+    return float(df["Close"].iloc[-1])
+
+
 def fetch_intraday_15m(ticker: str, period: str = "5d") -> pd.DataFrame:
     """
     15분봉 OHLCV. yfinance는 15m 데이터를 최근 60일까지만 제공.

@@ -93,3 +93,33 @@ class TelegramNotifier:
             f"⚠️ 15분봉 확인 없이 일봉만으로 알림 — 매도 타이밍은 직접 판단"
         )
         return self.send_message(text)
+
+    def send_exit_alert(
+        self, ticker: str, entry_price: float, exit_price: float, highest_price: float, stop_level: float
+    ) -> bool:
+        """/buy로 등록한 포지션이 ATR 트레일링 스톱에 닿아 자동 청산 신호가 나왔을 때."""
+        pnl_pct = (exit_price - entry_price) / entry_price * 100
+        emoji = "🟢" if pnl_pct >= 0 else "🔴"
+        text = (
+            f"{emoji} <b>{ticker}</b> — ATR 트레일링 스톱 도달, 청산 권장\n"
+            f"진입가: {entry_price:.2f} → 현재가: {exit_price:.2f} ({pnl_pct:+.1f}%)\n"
+            f"보유 중 최고가: {highest_price:.2f}\n"
+            f"스톱 라인: {stop_level:.2f}"
+        )
+        return self.send_message(text)
+
+    def get_updates(self, offset: int | None = None, timeout: int = 0) -> list[dict]:
+        """/buy, /sell, /positions 명령 폴링용. offset은 마지막으로 처리한 update_id + 1."""
+        if not self.token:
+            return []
+        url = f"https://api.telegram.org/bot{self.token}/getUpdates"
+        params = {"timeout": timeout}
+        if offset is not None:
+            params["offset"] = offset
+        try:
+            resp = requests.get(url, params=params, timeout=15)
+            resp.raise_for_status()
+            return resp.json().get("result", [])
+        except requests.RequestException:
+            logger.exception("getUpdates 실패")
+            return []

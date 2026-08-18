@@ -33,3 +33,7 @@ daily_scan:
 intraday_check:
   history_period: "5d"      # yfinance 15m 데이터 제공 한계(최근 60일) 내에서 워밍업에 충분한 기간
   min_volume_ratio: 0.1     # 트리거 봉 거래량이 그 종목 '정규장' 15분봉 중앙값의 이 비율 미만이면 노이즈로 보고 무시
+
+exit_strategy:
+  atr_period: 14            # 일봉 ATR 계산 기간
+  atr_multiplier: 3.0       # 손절선 = 진입 이후 최고가 - (ATR * 이 배수), Chandelier Exit
