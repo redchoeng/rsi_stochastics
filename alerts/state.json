@@ -63,5 +63,11 @@
   "COIN|daily_sell|2026-08-18": true,
   "FIX|daily_sell|2026-08-18": true,
   "HOOD|daily_sell|2026-08-18": true,
-  "VST|daily_sell|2026-08-18": true
+  "VST|daily_sell|2026-08-18": true,
+  "COIN|daily_candidate|2026-08-19": true,
+  "MSTR|daily_candidate|2026-08-19": true,
+  "FIX|daily_sell|2026-08-19": true,
+  "PWR|daily_sell|2026-08-19": true,
+  "ZTS|daily_candidate|2026-08-19": true,
+  "ZTS|entry_alert|2026-08-19": true
 }
