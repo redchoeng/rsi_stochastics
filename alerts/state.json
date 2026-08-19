@@ -69,5 +69,9 @@
   "FIX|daily_sell|2026-08-19": true,
   "PWR|daily_sell|2026-08-19": true,
   "ZTS|daily_candidate|2026-08-19": true,
-  "ZTS|entry_alert|2026-08-19": true
+  "ZTS|entry_alert|2026-08-19": true,
+  "ON|daily_sell|2026-08-19": true,
+  "EBAY|daily_candidate|2026-08-19": true,
+  "CRL|daily_candidate|2026-08-19": true,
+  "CRL|entry_alert|2026-08-19": true
 }
