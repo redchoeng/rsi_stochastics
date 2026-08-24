@@ -426,12 +426,6 @@
     "last_close": 244.63999938964844
   },
   {
-    "ticker": "CTSH",
-    "dollar_volume": 1660588304.8700104,
-    "atr_percent": 3.8068444096536584,
-    "last_close": 62.20000076293945
-  },
-  {
     "ticker": "UBER",
     "dollar_volume": 6002700522.242073,
     "atr_percent": 3.804650333304728,
@@ -472,6 +466,12 @@
     "dollar_volume": 4779754855.522156,
     "atr_percent": 3.7066615750318372,
     "last_close": 155.5500030517578
+  },
+  {
+    "ticker": "CTSH",
+    "dollar_volume": 1660588304.8700104,
+    "atr_percent": 3.6897106883339017,
+    "last_close": 62.20000076293945
   },
   {
     "ticker": "LLY",
