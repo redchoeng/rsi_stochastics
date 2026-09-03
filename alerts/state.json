@@ -70,5 +70,12 @@
   "RDDT|daily_candidate|2026-09-02": true,
   "VEEV|daily_candidate|2026-09-02": true,
   "ZTS|daily_sell|2026-09-02": true,
-  "APH|daily_candidate|2026-09-02": true
+  "APH|daily_candidate|2026-09-02": true,
+  "VRT|daily_candidate|2026-09-03": true,
+  "VRT|entry_alert|2026-09-03": true,
+  "ORCL|daily_candidate|2026-09-03": true,
+  "AVGO|daily_sell|2026-09-03": true,
+  "APTV|daily_candidate|2026-09-03": true,
+  "APTV|entry_alert|2026-09-03": true,
+  "XYZ|daily_candidate|2026-09-03": true
 }
