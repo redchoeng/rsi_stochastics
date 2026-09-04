@@ -69,11 +69,10 @@ def compute_rsi_with_ma(df: pd.DataFrame) -> pd.DataFrame:
 
 def session_gap_mask(index: pd.DatetimeIndex, gap_factor: float = 5.0) -> pd.Series:
     """
-    이전 봉과의 시간 간격이 정상 간격의 gap_factor배를 넘으면 True (세션 경계).
-    프리/애프터마켓까지 이어붙인 15분봉은 애프터마켓 마감~다음날 프리마켓 시작
-    사이에 몇 시간짜리 갭이 생기는데, 그 경계를 '바로 다음 봉'처럼 비교하면
-    갭 자체가 크로스로 잘못 잡힌다 (실제로 겪은 버그). 일봉은 주말 갭(~3배)
-    정도라 5배 기준이면 걸리지 않는다.
+    이전 봉과의 시간 간격이 정상 간격의 gap_factor배를 넘으면 True (데이터 공백 경계).
+    거래정지 등으로 며칠씩 비는 구간을 '바로 다음 봉'처럼 비교하면 그 갭 자체가
+    크로스로 잘못 잡힌다 (과거 15분봉 프리/애프터마켓 이어붙이기에서 실제로 겪은
+    버그). 일봉의 정상 주말 갭(~3배)은 5배 기준이면 걸리지 않는다.
     """
     diffs = index.to_series().diff().dt.total_seconds()
     median_gap = diffs.median()
@@ -123,9 +122,9 @@ def _scan_bullish_failure_swing(
     level 아래로 재진입하지 않는 더 높은 저점 -> peak1 돌파 시 확정.
     확정된 '바'에 True를 표시한다.
 
-    session_gap이 True인 지점(세션 경계)에서는 진행 중이던 패턴을 버리고
-    새로 찾기 시작한다 — 안 그러면 애프터마켓 마감과 다음날 프리마켓 시작
-    사이의 갭이 저점/고점으로 섞여 들어가 패턴이 오염된다.
+    session_gap이 True인 지점(데이터 공백 경계)에서는 진행 중이던 패턴을 버리고
+    새로 찾기 시작한다 — 안 그러면 갭 너머의 값이 저점/고점으로 섞여 들어가
+    패턴이 오염된다.
     """
     is_peak, is_trough = _local_extrema(values)
     n = len(values)
@@ -209,8 +208,7 @@ def compute_indicator_frame(df: pd.DataFrame) -> pd.DataFrame:
 def bar_conditions(row: pd.Series, direction: str) -> list[str]:
     """한 봉에서 direction(bullish/bearish)에 해당하는, 충족된 조건 이름 목록.
 
-    매수/매도 판단에 쓰이는 3가지 조건(스토캐 크로스/failure swing/RSI 크로스)이
-    일봉 필터와 15분봉 트리거 양쪽에서 동일해야 하므로 하나로 공유한다.
+    매수/매도 판단에 쓰이는 3가지 조건: 스토캐 크로스, failure swing, RSI 크로스.
     """
     if direction == "bullish":
         conditions = []
@@ -235,9 +233,8 @@ def bar_conditions(row: pd.Series, direction: str) -> list[str]:
 def today_daily_signal(indicator_df: pd.DataFrame, today: object, min_conditions: int = 2) -> dict | None:
     """
     '오늘' 일봉(마지막 행) 그 자체가 min_conditions개 이상을 충족하는지만 본다
-    (latest_daily_regime처럼 과거로 거슬러 올라가 가장 최근 신호를 찾지 않음).
-    매수는 당일 신호가 나야 그날 15분봉을 보고, 매도는 당일 신호만으로 바로
-    알림을 보내는 '당일 한정' 구조라서 필요.
+    (과거로 거슬러 올라가 가장 최근 신호를 찾지 않음 — 어제 이전 신호는 무시).
+    매수/매도 모두 당일 신호만으로 바로 알림을 보내는 '당일 한정' 구조라서 필요.
     today와 마지막 봉의 날짜가 다르면(예: 프리마켓이라 오늘자 일봉이 아직
     없음) None을 반환한다.
     """
@@ -254,19 +251,3 @@ def today_daily_signal(indicator_df: pd.DataFrame, today: object, min_conditions
     if len(bear_conditions) >= min_conditions:
         return {"direction": "bearish", "cross_date": str(last_idx.date()), "conditions": bear_conditions}
     return None
-
-
-def latest_intraday_triggers(indicator_df: pd.DataFrame, direction: str) -> list[dict]:
-    """마지막 봉에서 direction(bullish/bearish)에 맞는 조건이 새로 충족됐는지 확인."""
-    last = indicator_df.iloc[-1]
-    bar_ts = indicator_df.index[-1]
-    triggers = [{"condition": c} for c in bar_conditions(last, direction)]
-
-    for t in triggers:
-        t["bar_timestamp"] = str(bar_ts)
-        t["price"] = float(last["Close"])
-        t["stoch_k"] = float(last["stoch_k"])
-        t["stoch_d"] = float(last["stoch_d"])
-        t["rsi"] = float(last["rsi"])
-
-    return triggers

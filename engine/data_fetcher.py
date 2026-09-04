@@ -1,4 +1,4 @@
-"""yfinance 데이터 수집 (일봉/15분봉), 실패에 대한 얇은 재시도 래퍼."""
+"""yfinance 일봉 데이터 수집, 실패에 대한 얇은 재시도 래퍼."""
 from __future__ import annotations
 
 import logging
@@ -51,21 +51,3 @@ def fetch_last_price(ticker: str) -> float | None:
     if df.empty:
         return None
     return float(df["Close"].iloc[-1])
-
-
-def fetch_intraday_15m(ticker: str, period: str = "5d") -> pd.DataFrame:
-    """
-    15분봉 OHLCV. yfinance는 15m 데이터를 최근 60일까지만 제공.
-    prepost=True로 프리마켓(04:00 ET~)/애프터마켓(~20:00 ET) 봉도 포함한다 —
-    정규장 전후에도 진입 타이밍을 감지하기 위함. 거래량이 얕아 신호가
-    더 노이즈성일 수 있음을 감안해야 한다.
-    """
-    df = _download_with_retry(
-        tickers=ticker,
-        period=period,
-        interval="15m",
-        auto_adjust=False,
-        prepost=True,
-        progress=False,
-    )
-    return df.dropna(subset=["Close", "High", "Low"]) if not df.empty else df
