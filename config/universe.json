@@ -120,12 +120,6 @@
     "last_close": 849.280029296875
   },
   {
-    "ticker": "TER",
-    "dollar_volume": 3528166622.543335,
-    "atr_percent": 5.797030856173997,
-    "last_close": 357.0299987792969
-  },
-  {
     "ticker": "HPE",
     "dollar_volume": 11212629876.181793,
     "atr_percent": 5.738323337429173,
@@ -598,5 +592,11 @@
     "dollar_volume": 3488957643.408203,
     "atr_percent": 3.2672085199199716,
     "last_close": 1978.3599853515625
+  },
+  {
+    "ticker": "VST",
+    "dollar_volume": 3155498052.9159546,
+    "atr_percent": 3.2668167335665244,
+    "last_close": 149.3000030517578
   }
 ]
