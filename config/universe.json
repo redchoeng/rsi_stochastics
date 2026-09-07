@@ -30,12 +30,6 @@
     "last_close": 223.5500030517578
   },
   {
-    "ticker": "COIN",
-    "dollar_volume": 8576591167.880249,
-    "atr_percent": 7.177287052511081,
-    "last_close": 184.63999938964844
-  },
-  {
     "ticker": "LITE",
     "dollar_volume": 14628580978.57666,
     "atr_percent": 7.057111583574269,
@@ -598,5 +592,11 @@
     "dollar_volume": 3488957643.408203,
     "atr_percent": 3.2672085199199716,
     "last_close": 1978.3599853515625
+  },
+  {
+    "ticker": "VST",
+    "dollar_volume": 3155498052.9159546,
+    "atr_percent": 3.2668167335665244,
+    "last_close": 149.3000030517578
   }
 ]
