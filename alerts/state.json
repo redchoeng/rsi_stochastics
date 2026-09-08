@@ -1,21 +1,4 @@
 {
-  "VEEV|daily_sell|2026-09-02": true,
-  "CRWD|daily_sell|2026-09-02": true,
-  "DELL|daily_candidate|2026-09-02": true,
-  "SPCX|daily_sell|2026-09-02": true,
-  "INTU|daily_sell|2026-09-02": true,
-  "TSLA|daily_sell|2026-09-02": true,
-  "BBY|daily_candidate|2026-09-02": true,
-  "NOW|daily_sell|2026-09-02": true,
-  "ON|daily_candidate|2026-09-02": true,
-  "CHTR|daily_candidate|2026-09-02": true,
-  "FTNT|daily_sell|2026-09-02": true,
-  "ADBE|daily_sell|2026-09-02": true,
-  "CVNA|daily_candidate|2026-09-02": true,
-  "RDDT|daily_candidate|2026-09-02": true,
-  "VEEV|daily_candidate|2026-09-02": true,
-  "ZTS|daily_sell|2026-09-02": true,
-  "APH|daily_candidate|2026-09-02": true,
   "VRT|daily_candidate|2026-09-03": true,
   "VRT|entry_alert|2026-09-03": true,
   "ORCL|daily_candidate|2026-09-03": true,
@@ -54,5 +37,6 @@
   "HPQ|daily_sell|2026-09-08": true,
   "SLB|daily_buy|2026-09-08": true,
   "FCX|daily_buy|2026-09-08": true,
-  "EL|daily_sell|2026-09-08": true
+  "EL|daily_sell|2026-09-08": true,
+  "ULTA|daily_sell|2026-09-08": true
 }
