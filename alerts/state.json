@@ -32,5 +32,17 @@
   "ACN|daily_buy|2026-09-14": true,
   "PWR|daily_sell|2026-09-15": true,
   "ON|daily_sell|2026-09-16": true,
-  "PWR|daily_sell|2026-09-16": true
+  "PWR|daily_sell|2026-09-16": true,
+  "ALAB|daily_buy|2026-09-17": true,
+  "NBIS|daily_buy|2026-09-17": true,
+  "VRT|daily_buy|2026-09-17": true,
+  "MRVL|daily_buy|2026-09-17": true,
+  "ARM|daily_buy|2026-09-17": true,
+  "TER|daily_buy|2026-09-17": true,
+  "RDDT|daily_sell|2026-09-17": true,
+  "PYPL|daily_buy|2026-09-17": true,
+  "TSLA|daily_buy|2026-09-17": true,
+  "NRG|daily_buy|2026-09-17": true,
+  "ETN|daily_buy|2026-09-17": true,
+  "MPWR|daily_buy|2026-09-17": true
 }
