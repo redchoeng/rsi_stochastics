@@ -29,5 +29,7 @@
   "SNDK|daily_sell|2026-09-24": true,
   "QCOM|daily_sell|2026-09-25": true,
   "WDAY|daily_buy|2026-09-25": true,
-  "BKR|daily_buy|2026-09-25": true
+  "BKR|daily_buy|2026-09-25": true,
+  "BKNG|daily_buy|2026-09-25": true,
+  "TSLA|daily_sell|2026-09-25": true
 }
