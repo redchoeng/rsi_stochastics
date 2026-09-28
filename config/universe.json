@@ -252,6 +252,12 @@
     "last_close": 113.04000091552734
   },
   {
+    "ticker": "PANW",
+    "dollar_volume": 11227363091.545715,
+    "atr_percent": 4.6837327218172335,
+    "last_close": 392.0899963378906
+  },
+  {
     "ticker": "CASY",
     "dollar_volume": 2214387868.0441895,
     "atr_percent": 4.6145677168247605,
@@ -360,12 +366,6 @@
     "last_close": 1351.199951171875
   },
   {
-    "ticker": "MGM",
-    "dollar_volume": 1592655706.3490448,
-    "atr_percent": 4.037757856391275,
-    "last_close": 31.860000610351562
-  },
-  {
     "ticker": "HONA",
     "dollar_volume": 2498736049.411377,
     "atr_percent": 4.0122295845443405,
@@ -376,12 +376,6 @@
     "dollar_volume": 7861513266.976852,
     "atr_percent": 3.993386770995383,
     "last_close": 189.1699981689453
-  },
-  {
-    "ticker": "NCLH",
-    "dollar_volume": 1587996885.1049204,
-    "atr_percent": 3.993211899315035,
-    "last_close": 14.3100004196167
   },
   {
     "ticker": "ACN",
@@ -598,5 +592,11 @@
     "dollar_volume": 6408821023.426514,
     "atr_percent": 3.3726482001521827,
     "last_close": 1712.4100341796875
+  },
+  {
+    "ticker": "F",
+    "dollar_volume": 2712598604.3574266,
+    "atr_percent": 3.3637218617795783,
+    "last_close": 12.380000114440918
   }
 ]
