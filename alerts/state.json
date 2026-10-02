@@ -32,5 +32,9 @@
   "STX|daily_buy|2026-10-01": true,
   "BA|daily_buy|2026-10-01": true,
   "ILMN|daily_sell|2026-10-01": true,
-  "RDDT|daily_buy|2026-10-01": true
+  "RDDT|daily_buy|2026-10-01": true,
+  "ARM|daily_buy|2026-10-02": true,
+  "COIN|daily_buy|2026-10-02": true,
+  "WDC|daily_sell|2026-10-02": true,
+  "STX|daily_sell|2026-10-02": true
 }
