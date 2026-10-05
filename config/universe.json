@@ -1,602 +1,602 @@
 [
   {
     "ticker": "CTVA",
-    "dollar_volume": 2942484594.7150946,
-    "atr_percent": 53.24012096882178,
-    "last_close": 12.234999656677246
+    "dollar_volume": 2951177494.134611,
+    "atr_percent": 52.98030563098113,
+    "last_close": 12.295000076293945
   },
   {
     "ticker": "FICO",
-    "dollar_volume": 7648270735.119629,
-    "atr_percent": 8.005810736664763,
-    "last_close": 680.469970703125
+    "dollar_volume": 7663405937.579956,
+    "atr_percent": 8.009576713793617,
+    "last_close": 680.1500244140625
   },
   {
     "ticker": "MRNA",
-    "dollar_volume": 13116596397.201736,
-    "atr_percent": 7.215723785998283,
-    "last_close": 196.74989318847656
+    "dollar_volume": 13223243889.665955,
+    "atr_percent": 7.155710321813012,
+    "last_close": 198.39999389648438
   },
   {
     "ticker": "BE",
-    "dollar_volume": 19068520050.36609,
-    "atr_percent": 7.086801590915483,
-    "last_close": 288.989990234375
+    "dollar_volume": 19099584719.015045,
+    "atr_percent": 7.091954883332606,
+    "last_close": 288.7799987792969
   },
   {
     "ticker": "ARM",
-    "dollar_volume": 6155049065.729034,
-    "atr_percent": 6.678576283123193,
-    "last_close": 301.0729064941406
+    "dollar_volume": 6177049666.186523,
+    "atr_percent": 6.692981258442303,
+    "last_close": 300.8450927734375
   },
   {
     "ticker": "AKAM",
-    "dollar_volume": 2656195511.094986,
-    "atr_percent": 6.4901031812332715,
-    "last_close": 107.82990264892578
+    "dollar_volume": 2668019125.518402,
+    "atr_percent": 6.510928876028391,
+    "last_close": 107.48500061035156
   },
   {
     "ticker": "NBIS",
-    "dollar_volume": 14011298679.954224,
-    "atr_percent": 6.438389462178239,
-    "last_close": 235.0
+    "dollar_volume": 14063072291.568695,
+    "atr_percent": 6.444696920718875,
+    "last_close": 234.77000427246094
   },
   {
     "ticker": "GEN",
-    "dollar_volume": 1516343479.1059875,
-    "atr_percent": 6.279345407049831,
-    "last_close": 22.209999084472656
-  },
-  {
-    "ticker": "WDC",
-    "dollar_volume": 22145073177.25177,
-    "atr_percent": 6.051082011893813,
-    "last_close": 441.0899963378906
-  },
-  {
-    "ticker": "ALAB",
-    "dollar_volume": 5535210835.075195,
-    "atr_percent": 6.020675131692997,
-    "last_close": 358.80999755859375
-  },
-  {
-    "ticker": "STX",
-    "dollar_volume": 22178943689.15332,
-    "atr_percent": 5.987665638391349,
-    "last_close": 889.1849975585938
+    "dollar_volume": 1523099530.473709,
+    "atr_percent": 6.208068319358482,
+    "last_close": 22.46500015258789
   },
   {
     "ticker": "COIN",
-    "dollar_volume": 6919022413.874481,
-    "atr_percent": 5.986644301226413,
-    "last_close": 186.4149932861328
+    "dollar_volume": 6965620048.353699,
+    "atr_percent": 6.056824659549254,
+    "last_close": 184.2550048828125
   },
   {
-    "ticker": "LITE",
-    "dollar_volume": 24587399707.231934,
-    "atr_percent": 5.895265724380312,
-    "last_close": 1088.89013671875
+    "ticker": "WDC",
+    "dollar_volume": 22252990957.87085,
+    "atr_percent": 6.047654335917183,
+    "last_close": 441.3399963378906
   },
   {
-    "ticker": "COHR",
-    "dollar_volume": 10541815679.440796,
-    "atr_percent": 5.892456872187687,
-    "last_close": 333.4649963378906
+    "ticker": "ALAB",
+    "dollar_volume": 5564084760.082764,
+    "atr_percent": 6.042652270034579,
+    "last_close": 357.5050048828125
+  },
+  {
+    "ticker": "STX",
+    "dollar_volume": 22248915208.930542,
+    "atr_percent": 5.982518549385804,
+    "last_close": 889.9500122070312
   },
   {
     "ticker": "MSTR",
-    "dollar_volume": 14174540610.118896,
-    "atr_percent": 5.891414409609938,
-    "last_close": 161.38499450683594
+    "dollar_volume": 14241041413.861465,
+    "atr_percent": 5.92925638405357,
+    "last_close": 160.35499572753906
+  },
+  {
+    "ticker": "COHR",
+    "dollar_volume": 10578698295.243347,
+    "atr_percent": 5.8791457786145465,
+    "last_close": 334.2200012207031
+  },
+  {
+    "ticker": "LITE",
+    "dollar_volume": 24671195213.93982,
+    "atr_percent": 5.86681817523299,
+    "last_close": 1094.1700439453125
   },
   {
     "ticker": "APP",
-    "dollar_volume": 8771415128.976074,
-    "atr_percent": 5.695210819853982,
-    "last_close": 284.55499267578125
+    "dollar_volume": 8804910239.414154,
+    "atr_percent": 5.698314725423113,
+    "last_close": 284.3999938964844
   },
   {
     "ticker": "INTC",
-    "dollar_volume": 50752420061.07666,
-    "atr_percent": 5.626693703764412,
-    "last_close": 117.58999633789062
+    "dollar_volume": 50937668917.579155,
+    "atr_percent": 5.6372401511199355,
+    "last_close": 117.37000274658203
   },
   {
     "ticker": "RKLB",
-    "dollar_volume": 7319014135.16494,
-    "atr_percent": 5.5567037474331284,
-    "last_close": 72.4800033569336
-  },
-  {
-    "ticker": "CIEN",
-    "dollar_volume": 4005225155.722412,
-    "atr_percent": 5.332148517261337,
-    "last_close": 394.1322021484375
+    "dollar_volume": 7338726383.583603,
+    "atr_percent": 5.549812704438571,
+    "last_close": 72.56999969482422
   },
   {
     "ticker": "SNDK",
-    "dollar_volume": 56920308349.762695,
-    "atr_percent": 5.329420585533225,
-    "last_close": 1705.739990234375
+    "dollar_volume": 57222010414.50232,
+    "atr_percent": 5.337670406057236,
+    "last_close": 1708.0550537109375
+  },
+  {
+    "ticker": "CIEN",
+    "dollar_volume": 4044305132.061157,
+    "atr_percent": 5.313775049588247,
+    "last_close": 395.4949951171875
   },
   {
     "ticker": "HOOD",
-    "dollar_volume": 12100935238.497116,
-    "atr_percent": 5.276187208289189,
-    "last_close": 113.57499694824219
-  },
-  {
-    "ticker": "HPE",
-    "dollar_volume": 6366535937.770409,
-    "atr_percent": 5.237502064946296,
-    "last_close": 68.6095962524414
+    "dollar_volume": 12164350098.342812,
+    "atr_percent": 5.306322008858923,
+    "last_close": 112.93000030517578
   },
   {
     "ticker": "SWKS",
-    "dollar_volume": 2141272704.3611526,
-    "atr_percent": 5.217086798722958,
-    "last_close": 81.5999984741211
+    "dollar_volume": 2158765090.6368103,
+    "atr_percent": 5.2716936256377025,
+    "last_close": 81.36000061035156
+  },
+  {
+    "ticker": "HPE",
+    "dollar_volume": 6380948274.735809,
+    "atr_percent": 5.240526522481774,
+    "last_close": 68.56999969482422
   },
   {
     "ticker": "ACN",
-    "dollar_volume": 11698532700.13556,
-    "atr_percent": 5.142347136333656,
-    "last_close": 195.5749969482422
+    "dollar_volume": 11720549122.73645,
+    "atr_percent": 5.14431982350515,
+    "last_close": 195.5
   },
   {
     "ticker": "CRWV",
-    "dollar_volume": 8836424468.391418,
-    "atr_percent": 5.037839045922137,
-    "last_close": 87.77999877929688
+    "dollar_volume": 8874449468.731537,
+    "atr_percent": 5.0484787846183625,
+    "last_close": 87.59500122070312
   },
   {
     "ticker": "SMCI",
-    "dollar_volume": 5891895010.329811,
-    "atr_percent": 5.013721427786861,
-    "last_close": 43.690101623535156
+    "dollar_volume": 5908445203.470917,
+    "atr_percent": 5.016017660700879,
+    "last_close": 43.670101165771484
   },
   {
     "ticker": "FSLR",
-    "dollar_volume": 1612586067.7277222,
-    "atr_percent": 4.990476220391473,
-    "last_close": 174.8800048828125
+    "dollar_volume": 1617848019.2498627,
+    "atr_percent": 4.975965042629047,
+    "last_close": 175.38999938964844
   },
   {
     "ticker": "P",
-    "dollar_volume": 2549235473.2731934,
-    "atr_percent": 4.913859076990736,
-    "last_close": 141.0050048828125
+    "dollar_volume": 2562665732.4503174,
+    "atr_percent": 4.910220343279102,
+    "last_close": 141.1094970703125
   },
   {
     "ticker": "QCOM",
-    "dollar_volume": 7864243942.565308,
-    "atr_percent": 4.868619309136153,
-    "last_close": 182.48779296875
+    "dollar_volume": 7913059403.228409,
+    "atr_percent": 4.881936181724384,
+    "last_close": 181.99000549316406
   },
   {
     "ticker": "CVNA",
-    "dollar_volume": 2500701663.798584,
-    "atr_percent": 4.734270641932032,
-    "last_close": 64.19000244140625
+    "dollar_volume": 2516818260.1901855,
+    "atr_percent": 4.729849713056733,
+    "last_close": 64.25
   },
   {
     "ticker": "DELL",
-    "dollar_volume": 13414183630.560059,
-    "atr_percent": 4.627755027025713,
-    "last_close": 556.594970703125
-  },
-  {
-    "ticker": "GLW",
-    "dollar_volume": 5075533126.904999,
-    "atr_percent": 4.546505114252257,
-    "last_close": 160.72000122070312
+    "dollar_volume": 13450482407.075317,
+    "atr_percent": 4.640218495721853,
+    "last_close": 555.0999755859375
   },
   {
     "ticker": "ILMN",
-    "dollar_volume": 3036997906.427246,
-    "atr_percent": 4.545194433892274,
-    "last_close": 283.67498779296875
+    "dollar_volume": 3059394767.660675,
+    "atr_percent": 4.556525318192209,
+    "last_close": 283.3299865722656
   },
   {
     "ticker": "RDDT",
-    "dollar_volume": 2688749951.7804413,
-    "atr_percent": 4.538896781727574,
-    "last_close": 150.22999572753906
+    "dollar_volume": 2701130039.12204,
+    "atr_percent": 4.529700252688188,
+    "last_close": 150.53500366210938
+  },
+  {
+    "ticker": "GLW",
+    "dollar_volume": 5094585522.977219,
+    "atr_percent": 4.527630647970768,
+    "last_close": 161.38999938964844
   },
   {
     "ticker": "LEN",
-    "dollar_volume": 2540683937.2735596,
-    "atr_percent": 4.492005861254836,
-    "last_close": 75.69000244140625
+    "dollar_volume": 2565762059.1447067,
+    "atr_percent": 4.514111114818463,
+    "last_close": 75.62000274658203
   },
   {
     "ticker": "SHOP",
-    "dollar_volume": 4651504887.945862,
-    "atr_percent": 4.480511840305141,
-    "last_close": 157.0500030517578
+    "dollar_volume": 4674842412.8064575,
+    "atr_percent": 4.476236716626906,
+    "last_close": 157.1999969482422
   },
   {
     "ticker": "JBL",
-    "dollar_volume": 3166481702.822418,
-    "atr_percent": 4.422346693083997,
-    "last_close": 305.0899963378906
+    "dollar_volume": 3170824324.310669,
+    "atr_percent": 4.426046137149927,
+    "last_close": 304.8349914550781
   },
   {
     "ticker": "MRVL",
-    "dollar_volume": 18979871733.724976,
-    "atr_percent": 4.403792023612758,
-    "last_close": 271.8599853515625
+    "dollar_volume": 19078616072.750977,
+    "atr_percent": 4.412475006606364,
+    "last_close": 271.32501220703125
   },
   {
     "ticker": "ORCL",
-    "dollar_volume": 19220707218.426666,
-    "atr_percent": 4.398826789778441,
-    "last_close": 143.22000122070312
+    "dollar_volume": 19282230863.149826,
+    "atr_percent": 4.38596477916117,
+    "last_close": 143.63999938964844
   },
   {
     "ticker": "AXON",
-    "dollar_volume": 1682175211.9771118,
-    "atr_percent": 4.3298740954229995,
-    "last_close": 408.5899963378906
+    "dollar_volume": 1691319333.941162,
+    "atr_percent": 4.333839527875804,
+    "last_close": 408.760009765625
   },
   {
     "ticker": "RCL",
-    "dollar_volume": 4304976421.556152,
-    "atr_percent": 4.265842395544018,
-    "last_close": 270.32000732421875
+    "dollar_volume": 4325855476.353882,
+    "atr_percent": 4.2762166617227715,
+    "last_close": 270.0150146484375
   },
   {
     "ticker": "VLO",
-    "dollar_volume": 4568317123.233337,
-    "atr_percent": 4.2526853102949405,
-    "last_close": 418.45001220703125
-  },
-  {
-    "ticker": "CHRW",
-    "dollar_volume": 1417153150.0354462,
-    "atr_percent": 4.2167163113955946,
-    "last_close": 135.4600067138672
+    "dollar_volume": 4583201640.965637,
+    "atr_percent": 4.2577275038981695,
+    "last_close": 418.54998779296875
   },
   {
     "ticker": "ON",
-    "dollar_volume": 4400246994.283051,
-    "atr_percent": 4.216428099321865,
-    "last_close": 85.46499633789062
+    "dollar_volume": 4417624592.570496,
+    "atr_percent": 4.218649260033948,
+    "last_close": 85.41999816894531
   },
   {
     "ticker": "EXPE",
-    "dollar_volume": 2221902943.343506,
-    "atr_percent": 4.215070063665091,
-    "last_close": 262.67999267578125
+    "dollar_volume": 2226661714.748291,
+    "atr_percent": 4.201235147843371,
+    "last_close": 263.5450134277344
+  },
+  {
+    "ticker": "CHRW",
+    "dollar_volume": 1449469672.652008,
+    "atr_percent": 4.165060685389179,
+    "last_close": 137.13999938964844
   },
   {
     "ticker": "PTC",
-    "dollar_volume": 4208631235.051605,
-    "atr_percent": 4.146855827830267,
-    "last_close": 192.58999633789062
+    "dollar_volume": 4401872586.7569275,
+    "atr_percent": 4.148255935668285,
+    "last_close": 192.52499389648438
   },
   {
     "ticker": "HPQ",
-    "dollar_volume": 1675875038.5098724,
-    "atr_percent": 4.130960392720803,
-    "last_close": 31.34000015258789
+    "dollar_volume": 1680626249.8532696,
+    "atr_percent": 4.142194938872912,
+    "last_close": 31.2549991607666
   },
   {
     "ticker": "TER",
-    "dollar_volume": 4152712873.2040405,
-    "atr_percent": 4.099629506245268,
-    "last_close": 443.92498779296875
+    "dollar_volume": 4169038047.0029297,
+    "atr_percent": 4.105779764517709,
+    "last_close": 443.260009765625
   },
   {
     "ticker": "INTU",
-    "dollar_volume": 4437080207.254517,
-    "atr_percent": 4.08990682773309,
-    "last_close": 282.35009765625
-  },
-  {
-    "ticker": "DASH",
-    "dollar_volume": 3580341452.577484,
-    "atr_percent": 4.058490310301868,
-    "last_close": 191.35000610351562
+    "dollar_volume": 4447983066.002686,
+    "atr_percent": 4.078821062242989,
+    "last_close": 283.11749267578125
   },
   {
     "ticker": "DDOG",
-    "dollar_volume": 3160099710.4345703,
-    "atr_percent": 4.047958072714311,
-    "last_close": 278.6199951171875
+    "dollar_volume": 3176507951.554077,
+    "atr_percent": 4.0582982693821945,
+    "last_close": 277.91009521484375
   },
   {
-    "ticker": "PANW",
-    "dollar_volume": 8972950936.471008,
-    "atr_percent": 3.94417844456032,
-    "last_close": 403.8500061035156
-  },
-  {
-    "ticker": "MU",
-    "dollar_volume": 142689112117.11438,
-    "atr_percent": 3.9350320171654385,
-    "last_close": 1063.7598876953125
+    "ticker": "DASH",
+    "dollar_volume": 3588246658.854645,
+    "atr_percent": 4.041382862444501,
+    "last_close": 192.16000366210938
   },
   {
     "ticker": "SNPS",
-    "dollar_volume": 7975141528.4470825,
-    "atr_percent": 3.9308722474164246,
-    "last_close": 486.1700134277344
+    "dollar_volume": 7995781327.440063,
+    "atr_percent": 3.968812048427458,
+    "last_close": 484.510009765625
+  },
+  {
+    "ticker": "PANW",
+    "dollar_volume": 8990834353.021118,
+    "atr_percent": 3.9361861172189156,
+    "last_close": 404.6700134277344
   },
   {
     "ticker": "MPC",
-    "dollar_volume": 3525016493.9605103,
-    "atr_percent": 3.9283078771055835,
-    "last_close": 432.82000732421875
+    "dollar_volume": 3540592767.463257,
+    "atr_percent": 3.934557607500164,
+    "last_close": 432.13250732421875
+  },
+  {
+    "ticker": "MU",
+    "dollar_volume": 143066016078.0581,
+    "atr_percent": 3.9309852453474146,
+    "last_close": 1064.85498046875
   },
   {
     "ticker": "AMD",
-    "dollar_volume": 47684964463.20245,
-    "atr_percent": 3.9224384899706846,
-    "last_close": 631.9500122070312
-  },
-  {
-    "ticker": "NCLH",
-    "dollar_volume": 1712583242.4335518,
-    "atr_percent": 3.9215209023098363,
-    "last_close": 14.944999694824219
+    "dollar_volume": 47811231159.05029,
+    "atr_percent": 3.9271303208281783,
+    "last_close": 631.1950073242188
   },
   {
     "ticker": "CRWD",
-    "dollar_volume": 8139995482.156494,
-    "atr_percent": 3.9079438248256397,
-    "last_close": 271.2900085449219
+    "dollar_volume": 8158494712.9079895,
+    "atr_percent": 3.9027650927686737,
+    "last_close": 271.6499938964844
   },
   {
-    "ticker": "SPCX",
-    "dollar_volume": 64073634002.61072,
-    "atr_percent": 3.8928745490897807,
-    "last_close": 166.93499755859375
-  },
-  {
-    "ticker": "NOW",
-    "dollar_volume": 5587980163.575134,
-    "atr_percent": 3.8830807493108126,
-    "last_close": 135.625
-  },
-  {
-    "ticker": "CTSH",
-    "dollar_volume": 2420518763.0655365,
-    "atr_percent": 3.8712920483713913,
-    "last_close": 58.36000061035156
-  },
-  {
-    "ticker": "CEG",
-    "dollar_volume": 4019760361.7698364,
-    "atr_percent": 3.8649064421887416,
-    "last_close": 268.94000244140625
+    "ticker": "NCLH",
+    "dollar_volume": 1718074732.7507687,
+    "atr_percent": 3.900640943510398,
+    "last_close": 15.024999618530273
   },
   {
     "ticker": "CBOE",
-    "dollar_volume": 2179264946.7781982,
-    "atr_percent": 3.86133739240338,
-    "last_close": 277.17999267578125
+    "dollar_volume": 2194339126.5983276,
+    "atr_percent": 3.882628803331923,
+    "last_close": 275.6600036621094
+  },
+  {
+    "ticker": "SPCX",
+    "dollar_volume": 64675628306.38904,
+    "atr_percent": 3.881133503779209,
+    "last_close": 167.44000244140625
+  },
+  {
+    "ticker": "CTSH",
+    "dollar_volume": 2424901207.933216,
+    "atr_percent": 3.874611575798907,
+    "last_close": 58.310001373291016
+  },
+  {
+    "ticker": "NOW",
+    "dollar_volume": 5603700491.652191,
+    "atr_percent": 3.8745103167276946,
+    "last_close": 135.9250030517578
+  },
+  {
+    "ticker": "CEG",
+    "dollar_volume": 4035620371.588928,
+    "atr_percent": 3.8611734801804665,
+    "last_close": 269.20001220703125
   },
   {
     "ticker": "META",
-    "dollar_volume": 54929696953.07703,
-    "atr_percent": 3.8610370912593868,
-    "last_close": 742.1400146484375
+    "dollar_volume": 55205148007.86182,
+    "atr_percent": 3.8486945257287744,
+    "last_close": 744.52001953125
   },
   {
     "ticker": "MPWR",
-    "dollar_volume": 3200459249.3408203,
-    "atr_percent": 3.7736811353056363,
-    "last_close": 1436.4150390625
+    "dollar_volume": 3213109768.725586,
+    "atr_percent": 3.769672512616367,
+    "last_close": 1437.9425048828125
   },
   {
     "ticker": "WDAY",
-    "dollar_volume": 1616038392.455841,
-    "atr_percent": 3.7706529276689222,
-    "last_close": 185.72000122070312
+    "dollar_volume": 1623560245.7422485,
+    "atr_percent": 3.7510614235987747,
+    "last_close": 186.69000244140625
   },
   {
     "ticker": "LULU",
-    "dollar_volume": 2249040951.0083694,
-    "atr_percent": 3.7335143434017772,
-    "last_close": 92.38500213623047
+    "dollar_volume": 2273175262.6109314,
+    "atr_percent": 3.7202258988803805,
+    "last_close": 92.71499633789062
   },
   {
     "ticker": "CMG",
-    "dollar_volume": 2370357077.5795326,
-    "atr_percent": 3.7252946915071146,
-    "last_close": 30.7549991607666
+    "dollar_volume": 2380216584.1959686,
+    "atr_percent": 3.716834785894232,
+    "last_close": 30.825000762939453
   },
   {
     "ticker": "BA",
-    "dollar_volume": 9668746822.394165,
-    "atr_percent": 3.719025643622012,
-    "last_close": 193.27259826660156
+    "dollar_volume": 9700589777.724442,
+    "atr_percent": 3.714077181783135,
+    "last_close": 193.5301055908203
   },
   {
     "ticker": "NTAP",
-    "dollar_volume": 3153996365.72052,
-    "atr_percent": 3.705996869591067,
-    "last_close": 220.27999877929688
-  },
-  {
-    "ticker": "CCL",
-    "dollar_volume": 4391324685.187101,
-    "atr_percent": 3.6855524652830436,
-    "last_close": 25.5049991607666
+    "dollar_volume": 3167165781.477844,
+    "atr_percent": 3.7078484475581215,
+    "last_close": 220.1699981689453
   },
   {
     "ticker": "LRCX",
-    "dollar_volume": 11444915121.929138,
-    "atr_percent": 3.678771881082997,
-    "last_close": 344.69000244140625
+    "dollar_volume": 11496862700.203552,
+    "atr_percent": 3.6872227716687895,
+    "last_close": 343.8999938964844
+  },
+  {
+    "ticker": "CCL",
+    "dollar_volume": 4401650800.139427,
+    "atr_percent": 3.67834128004166,
+    "last_close": 25.55500030517578
   },
   {
     "ticker": "VRT",
-    "dollar_volume": 4092438992.887085,
-    "atr_percent": 3.6253758840082964,
-    "last_close": 256.20001220703125
+    "dollar_volume": 4129497697.7561646,
+    "atr_percent": 3.6302646469608417,
+    "last_close": 255.85499572753906
   },
   {
     "ticker": "PSX",
-    "dollar_volume": 2599478425.591461,
-    "atr_percent": 3.5530309533511826,
-    "last_close": 269.8299865722656
+    "dollar_volume": 2607208714.914551,
+    "atr_percent": 3.569170166505018,
+    "last_close": 268.80999755859375
   },
   {
     "ticker": "FIX",
-    "dollar_volume": 2077310356.7263184,
-    "atr_percent": 3.551789195151462,
-    "last_close": 1720.3199462890625
+    "dollar_volume": 2086421635.1462402,
+    "atr_percent": 3.5333859721478698,
+    "last_close": 1729.280029296875
   },
   {
     "ticker": "EFX",
-    "dollar_volume": 1563626558.041397,
-    "atr_percent": 3.533443492085507,
-    "last_close": 141.0399932861328
+    "dollar_volume": 1570046769.2113647,
+    "atr_percent": 3.524073613554657,
+    "last_close": 141.4149932861328
   },
   {
     "ticker": "BKNG",
-    "dollar_volume": 5101603062.412796,
-    "atr_percent": 3.508221845826921,
-    "last_close": 157.0800018310547
+    "dollar_volume": 5133003257.230164,
+    "atr_percent": 3.5009783567224297,
+    "last_close": 157.40499877929688
   },
   {
     "ticker": "UAL",
-    "dollar_volume": 1927983996.836853,
-    "atr_percent": 3.4918794316200534,
-    "last_close": 112.01499938964844
+    "dollar_volume": 1937193196.3462524,
+    "atr_percent": 3.483638017938493,
+    "last_close": 112.27999877929688
   },
   {
     "ticker": "NKE",
-    "dollar_volume": 12382949596.321274,
-    "atr_percent": 3.4709385273514104,
-    "last_close": 33.584999084472656
+    "dollar_volume": 12460635364.372498,
+    "atr_percent": 3.45960731025809,
+    "last_close": 33.69499969482422
   },
   {
     "ticker": "CRM",
-    "dollar_volume": 10256084268.944107,
-    "atr_percent": 3.4599092587662574,
-    "last_close": 228.6999969482422
+    "dollar_volume": 10281931405.741089,
+    "atr_percent": 3.4451465611025993,
+    "last_close": 229.67999267578125
   },
   {
     "ticker": "GM",
-    "dollar_volume": 2793525237.788658,
-    "atr_percent": 3.437170270366474,
-    "last_close": 80.06999969482422
+    "dollar_volume": 2804270268.09906,
+    "atr_percent": 3.43427069794068,
+    "last_close": 80.19999694824219
   },
   {
     "ticker": "KLAC",
-    "dollar_volume": 6605992119.012375,
-    "atr_percent": 3.389530976370314,
-    "last_close": 203.8300018310547
-  },
-  {
-    "ticker": "APO",
-    "dollar_volume": 1710680262.189392,
-    "atr_percent": 3.3866994255726666,
-    "last_close": 114.83999633789062
+    "dollar_volume": 6627741195.685211,
+    "atr_percent": 3.391277871745049,
+    "last_close": 203.72500610351562
   },
   {
     "ticker": "CDNS",
-    "dollar_volume": 3964422201.7521973,
-    "atr_percent": 3.371732531427606,
-    "last_close": 355.7200012207031
+    "dollar_volume": 3979810235.1540527,
+    "atr_percent": 3.382763730973638,
+    "last_close": 354.55999755859375
   },
   {
-    "ticker": "MCHP",
-    "dollar_volume": 2326369611.291168,
-    "atr_percent": 3.355019603916576,
-    "last_close": 81.02999877929688
+    "ticker": "APO",
+    "dollar_volume": 1718894369.2794342,
+    "atr_percent": 3.3808324974003665,
+    "last_close": 115.23999786376953
   },
   {
     "ticker": "FCX",
-    "dollar_volume": 3956751883.293915,
-    "atr_percent": 3.3520174264107436,
-    "last_close": 73.00509643554688
+    "dollar_volume": 3970009871.2924194,
+    "atr_percent": 3.356389290595053,
+    "last_close": 72.91000366210938
   },
   {
-    "ticker": "ADBE",
-    "dollar_volume": 4199439526.9950867,
-    "atr_percent": 3.3227167753154014,
-    "last_close": 236.36000061035156
+    "ticker": "MCHP",
+    "dollar_volume": 2331175690.7893066,
+    "atr_percent": 3.352330357206697,
+    "last_close": 81.09500122070312
   },
   {
     "ticker": "AMAT",
-    "dollar_volume": 14207801865.376282,
-    "atr_percent": 3.322638382311177,
-    "last_close": 538.0599975585938
+    "dollar_volume": 14248498176.79004,
+    "atr_percent": 3.326842799564726,
+    "last_close": 537.3800048828125
   },
   {
-    "ticker": "HONA",
-    "dollar_volume": 1539004873.9188232,
-    "atr_percent": 3.305337162522614,
-    "last_close": 154.35000610351562
+    "ticker": "ADBE",
+    "dollar_volume": 4269732803.26947,
+    "atr_percent": 3.3263993713664863,
+    "last_close": 236.55999755859375
   },
   {
     "ticker": "BX",
-    "dollar_volume": 2854871739.5944595,
-    "atr_percent": 3.304885441248536,
-    "last_close": 112.1500015258789
+    "dollar_volume": 2866086471.0116425,
+    "atr_percent": 3.299589613078869,
+    "last_close": 112.33000183105469
+  },
+  {
+    "ticker": "HONA",
+    "dollar_volume": 1548403785.3619385,
+    "atr_percent": 3.2880089836894215,
+    "last_close": 155.43499755859375
   },
   {
     "ticker": "RVTY",
-    "dollar_volume": 1544068547.0585327,
-    "atr_percent": 3.278723525825553,
-    "last_close": 154.1649932861328
+    "dollar_volume": 1545732423.2063904,
+    "atr_percent": 3.2833023732759066,
+    "last_close": 153.9499969482422
   },
   {
     "ticker": "KKR",
-    "dollar_volume": 1973410715.0481873,
-    "atr_percent": 3.2695727051714334,
-    "last_close": 89.91999816894531
+    "dollar_volume": 1986446256.3946686,
+    "atr_percent": 3.2710278220560203,
+    "last_close": 89.87999725341797
   },
   {
     "ticker": "GEV",
-    "dollar_volume": 8870633441.678162,
-    "atr_percent": 3.2629716292508437,
-    "last_close": 992.2000122070312
+    "dollar_volume": 8905992425.120605,
+    "atr_percent": 3.2627085044410054,
+    "last_close": 992.280029296875
   },
   {
     "ticker": "VST",
-    "dollar_volume": 5208710273.344208,
-    "atr_percent": 3.231001388278637,
-    "last_close": 146.13999938964844
+    "dollar_volume": 5229050160.688446,
+    "atr_percent": 3.2276885814564613,
+    "last_close": 146.2899932861328
   },
   {
     "ticker": "FTNT",
-    "dollar_volume": 2295943738.0507812,
-    "atr_percent": 3.2271682781564706,
-    "last_close": 182.69000244140625
+    "dollar_volume": 2304743290.4931183,
+    "atr_percent": 3.2213493981649273,
+    "last_close": 183.02000427246094
   },
   {
     "ticker": "DVN",
-    "dollar_volume": 1852540599.990902,
-    "atr_percent": 3.211414187535566,
-    "last_close": 48.5099983215332
+    "dollar_volume": 1859855779.3606339,
+    "atr_percent": 3.2194092302051898,
+    "last_close": 48.44499969482422
   },
   {
     "ticker": "GIS",
-    "dollar_volume": 1809457392.5968456,
-    "atr_percent": 3.1973992540180287,
-    "last_close": 31.510000228881836
+    "dollar_volume": 1815977862.3153763,
+    "atr_percent": 3.1898070016238798,
+    "last_close": 31.584999084472656
   },
   {
     "ticker": "ABNB",
-    "dollar_volume": 2905416589.496277,
-    "atr_percent": 3.1958329225471287,
-    "last_close": 163.5500030517578
+    "dollar_volume": 2919340239.4385986,
+    "atr_percent": 3.1883874394016596,
+    "last_close": 164.3800048828125
   },
   {
     "ticker": "NEM",
-    "dollar_volume": 2466537172.1155014,
-    "atr_percent": 3.17741899145004,
-    "last_close": 115.56999969482422
+    "dollar_volume": 2473107674.83654,
+    "atr_percent": 3.1752209859680685,
+    "last_close": 115.6500015258789
   },
   {
     "ticker": "HUM",
-    "dollar_volume": 1989102533.1054688,
-    "atr_percent": 3.1733822904969884,
-    "last_close": 393.8900146484375
+    "dollar_volume": 2004579480.1011047,
+    "atr_percent": 3.166148002316329,
+    "last_close": 394.7900085449219
   }
 ]
