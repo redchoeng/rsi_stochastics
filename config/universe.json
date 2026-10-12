@@ -2,7 +2,7 @@
   {
     "ticker": "FICO",
     "dollar_volume": 5215307276.922607,
-    "atr_percent": 7.98484537131998,
+    "atr_percent": 7.982528863266168,
     "last_close": 740.0
   },
   {
@@ -140,7 +140,7 @@
   {
     "ticker": "COIN",
     "dollar_volume": 8071905061.577713,
-    "atr_percent": 5.344769326896269,
+    "atr_percent": 5.3443735769390415,
     "last_close": 180.38999938964844
   },
   {
@@ -194,7 +194,7 @@
   {
     "ticker": "ACN",
     "dollar_volume": 7129147586.820984,
-    "atr_percent": 4.623394220105417,
+    "atr_percent": 4.623061468546254,
     "last_close": 214.8699951171875
   },
   {
@@ -266,7 +266,7 @@
   {
     "ticker": "CBOE",
     "dollar_volume": 1942901095.9680176,
-    "atr_percent": 4.29104561853459,
+    "atr_percent": 4.287922993305736,
     "last_close": 297.3800048828125
   },
   {
@@ -390,16 +390,16 @@
     "last_close": 73.83000183105469
   },
   {
-    "ticker": "HPQ",
-    "dollar_volume": 1918161500.35717,
-    "atr_percent": 3.836911853685666,
-    "last_close": 29.8700008392334
-  },
-  {
     "ticker": "NOW",
     "dollar_volume": 6297788634.555908,
     "atr_percent": 3.836409894699075,
     "last_close": 140.32000732421875
+  },
+  {
+    "ticker": "HPQ",
+    "dollar_volume": 1918161500.35717,
+    "atr_percent": 3.829738201561216,
+    "last_close": 29.8700008392334
   },
   {
     "ticker": "LRCX",
@@ -494,7 +494,7 @@
   {
     "ticker": "AMAT",
     "dollar_volume": 11760812851.094818,
-    "atr_percent": 3.3290172878206117,
+    "atr_percent": 3.3288735812580565,
     "last_close": 497.5299987792969
   },
   {
