@@ -408,12 +408,6 @@
     "last_close": 75.55000305175781
   },
   {
-    "ticker": "NOW",
-    "dollar_volume": 6019022738.534546,
-    "atr_percent": 3.745360923160913,
-    "last_close": 140.86000061035156
-  },
-  {
     "ticker": "PTC",
     "dollar_volume": 10460812346.36383,
     "atr_percent": 3.744996108652803,
@@ -598,5 +592,11 @@
     "dollar_volume": 2934155741.9403076,
     "atr_percent": 3.19680047337149,
     "last_close": 278.17999267578125
+  },
+  {
+    "ticker": "CAT",
+    "dollar_volume": 10049998910.699463,
+    "atr_percent": 3.1683167346191845,
+    "last_close": 800.469970703125
   }
 ]
