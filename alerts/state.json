@@ -42,5 +42,7 @@
   "CRL|daily_buy|2026-10-15": true,
   "QCOM|daily_buy|2026-10-15": true,
   "ALAB|daily_sell|2026-10-16": true,
-  "AMD|daily_sell|2026-10-16": true
+  "AMD|daily_sell|2026-10-16": true,
+  "MRNA|daily_sell|2026-10-16": true,
+  "MPC|daily_sell|2026-10-16": true
 }
