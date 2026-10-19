@@ -372,12 +372,6 @@
     "last_close": 631.8599853515625
   },
   {
-    "ticker": "AXON",
-    "dollar_volume": 1898632802.444458,
-    "atr_percent": 4.272832256224732,
-    "last_close": 390.2900085449219
-  },
-  {
     "ticker": "CBOE",
     "dollar_volume": 1936597119.4366455,
     "atr_percent": 4.253557028689244,
@@ -592,6 +586,12 @@
     "dollar_volume": 5465328762.013626,
     "atr_percent": 3.3088380930893835,
     "last_close": 37.130001068115234
+  },
+  {
+    "ticker": "LULU",
+    "dollar_volume": 1594816855.7792664,
+    "atr_percent": 3.2941008615850573,
+    "last_close": 97.0999984741211
   },
   {
     "ticker": "ASML",
