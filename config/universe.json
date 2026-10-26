@@ -402,6 +402,12 @@
     "last_close": 289.010009765625
   },
   {
+    "ticker": "NTAP",
+    "dollar_volume": 1647717280.6777954,
+    "atr_percent": 4.197273275908088,
+    "last_close": 215.47999572753906
+  },
+  {
     "ticker": "APP",
     "dollar_volume": 3544183688.7817383,
     "atr_percent": 4.128996073111792,
@@ -592,11 +598,5 @@
     "dollar_volume": 3974990162.5289917,
     "atr_percent": 3.5069447177620185,
     "last_close": 117.97000122070312
-  },
-  {
-    "ticker": "CCL",
-    "dollar_volume": 2495867893.416977,
-    "atr_percent": 3.4989316885978186,
-    "last_close": 26.110000610351562
   }
 ]
